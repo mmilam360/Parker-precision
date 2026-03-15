@@ -1,4 +1,4 @@
-import { BuildingOffice2, Factory, ShieldCheck } from "lucide-react";
+import { Building2, Factory, ShieldCheck } from "lucide-react";
 
 const differentiators = [
   {
@@ -11,7 +11,7 @@ const differentiators = [
     title: "Full In-House Capability",
     description:
       "Engineering through tool and die under one roof. Less coordination, faster turnaround, fewer handoffs.",
-    icon: BuildingOffice2,
+    icon: Building2,
   },
   {
     title: "OEM Trusted",
