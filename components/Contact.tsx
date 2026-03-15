@@ -1,105 +1,166 @@
 "use client";
 
-import { Mail, MapPin, Phone } from "lucide-react";
+import {
+  MapPinIcon,
+  PhoneIcon,
+  EnvelopeIcon,
+} from "@heroicons/react/24/outline";
 
 export function Contact() {
   return (
-    <section id="contact" className="bg-[#f3f4f6] py-20 sm:py-24">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
-        <div>
+    <section id="contact" className="bg-[#f9fafb] py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
-            Contact
+            Get in Touch
           </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Request a Quote
           </h2>
-          <div className="mt-8 space-y-6 text-gray-700">
-            <div>
-              <p className="text-xl font-semibold text-gray-900">
-                Parker Plastics Corporation
-              </p>
-            </div>
-            <div className="flex items-start gap-3">
-              <MapPin className="mt-0.5 h-5 w-5 text-[#990000]" />
-              <p>3585 Valley Drive, Pittsburgh, PA 15234</p>
-            </div>
-            <div className="flex items-start gap-3">
-              <Phone className="mt-0.5 h-5 w-5 text-[#990000]" />
-              <a href="tel:4125616902" className="transition hover:text-[#990000]">
-                412.561.6902
-              </a>
-            </div>
-            <div className="flex items-start gap-3">
-              <Mail className="mt-0.5 h-5 w-5 text-[#990000]" />
-              <a
-                href="mailto:wynnthomas@parkerplasticscorp.com"
-                className="transition hover:text-[#990000]"
-              >
-                wynnthomas@parkerplasticscorp.com
-              </a>
-            </div>
-          </div>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-gray-600">
+            Send us your project details and we&apos;ll follow up promptly.
+          </p>
         </div>
 
-        <form className="rounded-3xl bg-white p-8 shadow-sm">
-          <div className="grid gap-6 sm:grid-cols-2">
-            <label className="block">
-              <span className="mb-2 block text-sm font-medium text-gray-700">
-                Name
-              </span>
-              <input
-                type="text"
-                required
-                className="w-full rounded-2xl border border-gray-300 px-4 py-3 text-gray-900 outline-none transition focus:border-[#990000] focus:ring-2 focus:ring-[#990000]/20"
-              />
-            </label>
-            <label className="block">
-              <span className="mb-2 block text-sm font-medium text-gray-700">
-                Company
-              </span>
-              <input
-                type="text"
-                className="w-full rounded-2xl border border-gray-300 px-4 py-3 text-gray-900 outline-none transition focus:border-[#990000] focus:ring-2 focus:ring-[#990000]/20"
-              />
-            </label>
-            <label className="block">
-              <span className="mb-2 block text-sm font-medium text-gray-700">
-                Email
-              </span>
-              <input
-                type="email"
-                required
-                className="w-full rounded-2xl border border-gray-300 px-4 py-3 text-gray-900 outline-none transition focus:border-[#990000] focus:ring-2 focus:ring-[#990000]/20"
-              />
-            </label>
-            <label className="block">
-              <span className="mb-2 block text-sm font-medium text-gray-700">
-                Phone
-              </span>
-              <input
-                type="tel"
-                className="w-full rounded-2xl border border-gray-300 px-4 py-3 text-gray-900 outline-none transition focus:border-[#990000] focus:ring-2 focus:ring-[#990000]/20"
-              />
-            </label>
+        <div className="mt-14 grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          {/* Left: Contact Info */}
+          <div className="flex flex-col justify-center space-y-8">
+            <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+              <h3 className="text-xl font-bold text-gray-900">
+                Parker Plastics Corporation
+              </h3>
+              <p className="mt-1 text-sm text-gray-500">Pittsburgh, Pennsylvania</p>
+
+              <div className="mt-8 space-y-5">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#990000]/10">
+                    <MapPinIcon className="h-5 w-5 text-[#990000]" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700">Address</p>
+                    <p className="mt-0.5 text-sm text-gray-600">
+                      3585 Valley Drive<br />Pittsburgh, PA 15234
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#990000]/10">
+                    <PhoneIcon className="h-5 w-5 text-[#990000]" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700">Phone</p>
+                    <a
+                      href="tel:4125616902"
+                      className="mt-0.5 block text-sm text-gray-600 transition hover:text-[#990000]"
+                    >
+                      412.561.6902
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#990000]/10">
+                    <EnvelopeIcon className="h-5 w-5 text-[#990000]" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700">Email</p>
+                    <a
+                      href="mailto:wynnthomas@parkerplasticscorp.com"
+                      className="mt-0.5 block text-sm text-gray-600 transition hover:text-[#990000]"
+                    >
+                      wynnthomas@parkerplasticscorp.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Map placeholder */}
+            <div className="flex h-52 items-center justify-center overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 shadow-sm">
+              <a
+                href="https://maps.google.com/?q=3585+Valley+Drive+Pittsburgh+PA+15234"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-2 text-gray-500 transition hover:text-[#990000]"
+              >
+                <MapPinIcon className="h-8 w-8" />
+                <span className="text-sm font-medium">View on Google Maps</span>
+              </a>
+            </div>
           </div>
 
-          <label className="mt-6 block">
-            <span className="mb-2 block text-sm font-medium text-gray-700">
-              Project Description
-            </span>
-            <textarea
-              rows={6}
-              className="w-full rounded-3xl border border-gray-300 px-4 py-3 text-gray-900 outline-none transition focus:border-[#990000] focus:ring-2 focus:ring-[#990000]/20"
-            />
-          </label>
+          {/* Right: RFQ Form */}
+          <form className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+            <h3 className="text-lg font-bold text-gray-900">Submit RFQ</h3>
+            <p className="mt-1 text-sm text-gray-500">
+              Fill out the form and we&apos;ll be in touch within one business day.
+            </p>
 
-          <button
-            type="submit"
-            className="mt-6 inline-flex items-center justify-center rounded-full bg-[#990000] px-6 py-3 text-base font-semibold text-white transition hover:bg-[#7a0000]"
-          >
-            Send Request
-          </button>
-        </form>
+            <div className="mt-6 grid gap-5 sm:grid-cols-2">
+              <label className="block">
+                <span className="mb-1.5 block text-sm font-semibold text-gray-700">
+                  Name <span className="text-[#990000]">*</span>
+                </span>
+                <input
+                  type="text"
+                  required
+                  placeholder="Jane Smith"
+                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#990000] focus:ring-2 focus:ring-[#990000]/20"
+                />
+              </label>
+              <label className="block">
+                <span className="mb-1.5 block text-sm font-semibold text-gray-700">
+                  Company
+                </span>
+                <input
+                  type="text"
+                  placeholder="Acme Corporation"
+                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#990000] focus:ring-2 focus:ring-[#990000]/20"
+                />
+              </label>
+              <label className="block">
+                <span className="mb-1.5 block text-sm font-semibold text-gray-700">
+                  Email <span className="text-[#990000]">*</span>
+                </span>
+                <input
+                  type="email"
+                  required
+                  placeholder="jane@company.com"
+                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#990000] focus:ring-2 focus:ring-[#990000]/20"
+                />
+              </label>
+              <label className="block">
+                <span className="mb-1.5 block text-sm font-semibold text-gray-700">
+                  Phone
+                </span>
+                <input
+                  type="tel"
+                  placeholder="412-000-0000"
+                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#990000] focus:ring-2 focus:ring-[#990000]/20"
+                />
+              </label>
+            </div>
+
+            <label className="mt-5 block">
+              <span className="mb-1.5 block text-sm font-semibold text-gray-700">
+                Project Details
+              </span>
+              <textarea
+                rows={5}
+                placeholder="Describe your project, material preferences, quantities, and any relevant specifications..."
+                className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#990000] focus:ring-2 focus:ring-[#990000]/20"
+              />
+            </label>
+
+            <button
+              type="submit"
+              className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-[#990000] px-6 py-3.5 text-sm font-bold text-white shadow-md shadow-[#990000]/25 transition hover:bg-[#7a0000] active:scale-[0.98]"
+            >
+              Send Request for Quote
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );

@@ -1,7 +1,9 @@
+"use client";
+
 import {
-  AdjustmentsHorizontalIcon,
-  CogIcon,
   WrenchScrewdriverIcon,
+  CogIcon,
+  AdjustmentsHorizontalIcon,
 } from "@heroicons/react/24/outline";
 
 const services = [
@@ -27,39 +29,39 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="bg-[#f3f4f6] py-20 sm:py-24">
+    <section id="services" className="bg-[#111827] py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
             Capabilities
           </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             What We Do
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg leading-8 text-white/70">
             Parker Plastics supports B2B manufacturing programs with integrated
-            engineering, tooling, and production expertise.
+            engineering, tooling, and production expertise — all under one roof.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
           {services.map((service) => {
             const Icon = service.icon;
-
             return (
               <article
                 key={service.title}
-                className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm"
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 transition-all duration-300 hover:border-[#990000]/40 hover:bg-white/10"
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#990000]/10 text-[#990000]">
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#990000] text-white shadow-lg shadow-[#990000]/20">
                   <Icon className="h-7 w-7" />
                 </div>
-                <h3 className="mt-6 text-xl font-semibold text-gray-900">
+                <h3 className="mt-6 text-xl font-bold text-white">
                   {service.title}
                 </h3>
-                <p className="mt-4 text-base leading-7 text-gray-600">
+                <p className="mt-4 text-base leading-7 text-white/65">
                   {service.description}
                 </p>
+                <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#990000] transition-all duration-300 group-hover:w-full" />
               </article>
             );
           })}

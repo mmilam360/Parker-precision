@@ -1,62 +1,64 @@
-import { Building2, Factory, ShieldCheck } from "lucide-react";
+import {
+  BuildingOffice2Icon,
+  WrenchScrewdriverIcon,
+  StarIcon,
+} from "@heroicons/react/24/outline";
 
-const differentiators = [
+const stats = [
   {
-    title: "Since 1946",
-    description:
-      "Pittsburgh's original injection moulder. 80 years of manufacturing expertise in the Steel City.",
-    icon: Factory,
+    value: "80+",
+    label: "Years in Business",
+    sub: "Pittsburgh's original injection moulder, serving industry since 1946.",
+    icon: BuildingOffice2Icon,
   },
   {
-    title: "Full In-House Capability",
-    description:
-      "Engineering through tool and die under one roof. Less coordination, faster turnaround, fewer handoffs.",
-    icon: Building2,
+    value: "1 Roof",
+    label: "Full In-House Capability",
+    sub: "Engineering, tool & die, and production under one roof. Fewer handoffs, faster turnaround.",
+    icon: WrenchScrewdriverIcon,
   },
   {
-    title: "OEM Trusted",
-    description:
-      "Serving top OEM companies with cost-effective solutions, reliable quality, and responsive service.",
-    icon: ShieldCheck,
+    value: "Fortune 500",
+    label: "OEM Clients",
+    sub: "Trusted by top OEM manufacturers to deliver precision, reliability, and cost-effective solutions.",
+    icon: StarIcon,
   },
 ];
 
 export function WhyUs() {
   return (
-    <section id="about" className="bg-[#333333] py-20 text-white sm:py-24">
+    <section id="about" className="bg-[#111827] py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#f4b4b4]">
+        <div className="text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
             Why Parker Plastics
           </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-            Why Parker Plastics
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Built Different. Built to Last.
           </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/65">
+            Decades of expertise, proven processes, and a team that treats your
+            program like it&apos;s their own.
+          </p>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {differentiators.map((item, index) => {
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          {stats.map((item) => {
             const Icon = item.icon;
-            const stat = index === 0 ? "80 Years" : index === 1 ? "One Roof" : "Top OEMs";
-
             return (
-              <article
-                key={item.title}
-                className="rounded-3xl border border-white/10 bg-white/5 p-8"
+              <div
+                key={item.value}
+                className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-10 text-center transition-all duration-300 hover:border-[#990000]/40"
               >
-                <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#990000] text-white">
-                    <Icon className="h-7 w-7" />
-                  </div>
-                  <div>
-                    <p className="text-2xl font-semibold">{stat}</p>
-                    <h3 className="text-lg font-medium text-white/85">{item.title}</h3>
-                  </div>
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-[#990000]/20">
+                  <Icon className="h-7 w-7 text-[#990000]" />
                 </div>
-                <p className="mt-6 text-base leading-7 text-white/75">
-                  {item.description}
+                <p className="mt-6 text-5xl font-black tracking-tight text-[#990000]">
+                  {item.value}
                 </p>
-              </article>
+                <p className="mt-2 text-lg font-bold text-white">{item.label}</p>
+                <p className="mt-3 text-sm leading-6 text-white/60">{item.sub}</p>
+              </div>
             );
           })}
         </div>
