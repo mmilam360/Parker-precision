@@ -23,8 +23,8 @@ export function Contact() {
         </div>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          {/* Left: Contact Info */}
-          <div className="flex flex-col justify-center space-y-8">
+          {/* Left: Contact Info — shows below form on mobile */}
+          <div className="flex flex-col justify-center space-y-8 order-2 lg:order-1">
             <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
               <h3 className="text-xl font-bold text-gray-900">
                 Parker Plastics Corporation
@@ -91,8 +91,8 @@ export function Contact() {
             </div>
           </div>
 
-          {/* Right: RFQ Form */}
-          <form className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+          {/* Right: RFQ Form — shows first on mobile */}
+          <form className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm order-1 lg:order-2">
             <h3 className="text-lg font-bold text-gray-900">Submit RFQ</h3>
             <p className="mt-1 text-sm text-gray-500">
               Fill out the form and we&apos;ll be in touch within one business day.
