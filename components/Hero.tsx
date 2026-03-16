@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { ArrowRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-screen flex-col overflow-hidden bg-[#111827]"
+      className="relative isolate flex h-screen flex-col overflow-hidden bg-[#111827]"
     >
       {/* Background video */}
       <video
@@ -13,16 +13,17 @@ export function Hero() {
         muted
         loop
         playsInline
-        className="absolute inset-0 h-full w-full object-cover object-[center_60%] md:object-center"
+        className="absolute inset-0 h-full w-full object-cover object-[center_40%] md:object-center"
+        style={{ filter: "brightness(0.85)" }}
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40" />
+      <div className="absolute inset-0 bg-black/30" />
 
       {/* Content */}
-      <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pt-20 pb-16 sm:px-6 sm:py-32 lg:px-8">
+      <div className="relative mx-auto flex h-full w-full max-w-7xl flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           {/* Badge */}
           <div className="inline-flex items-center rounded-full border border-[#990000]/40 bg-[#990000]/10 px-4 py-1.5 backdrop-blur">
@@ -70,18 +71,6 @@ export function Hero() {
             <span>✦ Fortune 500 OEM Clients</span>
           </div>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="relative mx-auto flex w-full max-w-7xl justify-center pb-10">
-        <a
-          href="#services"
-          className="flex flex-col items-center gap-1 text-white/30 transition hover:text-white/60"
-          aria-label="Scroll down"
-        >
-          <span className="text-xs uppercase tracking-widest">Scroll</span>
-          <ChevronDownIcon className="h-5 w-5 animate-bounce" />
-        </a>
       </div>
     </section>
   );
