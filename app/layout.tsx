@@ -18,8 +18,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ scrollBehavior: 'auto' }}>
       <body className={`${inter.className} bg-white text-gray-900 antialiased`}>
+        <script dangerouslySetInnerHTML={{ __html: 'if (history.scrollRestoration) history.scrollRestoration = "manual"; window.scrollTo(0, 0);' }} />
         {children}
       </body>
     </html>
