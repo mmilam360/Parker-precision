@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 
@@ -8,19 +7,19 @@ export function Hero() {
       id="top"
       className="relative isolate flex min-h-screen flex-col overflow-hidden bg-[#111827]"
     >
-      {/* Background image */}
-      <Image
-        src="/images/hero-factory.jpg"
-        alt="Parker Plastics injection molding facility"
-        fill
-        sizes="100vw"
-        className="absolute inset-0 object-cover opacity-40"
-        priority
-      />
+      {/* Background video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src="/videos/hero.mp4" type="video/mp4" />
+      </video>
 
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#111827]/95 via-[#111827]/70 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent" />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40" />
 
       {/* Content */}
       <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-32 sm:px-6 lg:px-8">

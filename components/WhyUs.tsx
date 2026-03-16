@@ -27,16 +27,16 @@ const stats = [
 
 export function WhyUs() {
   return (
-    <section id="about" className="bg-[#111827] py-20 sm:py-28">
+    <section id="about" className="bg-gray-100 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
             Why Parker Plastics
           </p>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Built Different. Built to Last.
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/65">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-900/65">
             Decades of expertise, proven processes, and a team that treats your
             program like it&apos;s their own.
           </p>
@@ -56,8 +56,8 @@ export function WhyUs() {
                 <p className="mt-6 text-5xl font-black tracking-tight text-[#990000]">
                   {item.value}
                 </p>
-                <p className="mt-2 text-lg font-bold text-white">{item.label}</p>
-                <p className="mt-3 text-sm leading-6 text-white/60">{item.sub}</p>
+                <p className="mt-2 text-lg font-bold text-gray-900">{item.label}</p>
+                <p className="mt-3 text-sm leading-6 text-gray-500">{item.sub}</p>
               </div>
             );
           })}

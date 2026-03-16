@@ -76,17 +76,18 @@ export function Contact() {
               </div>
             </div>
 
-            {/* Map placeholder */}
-            <div className="flex h-52 items-center justify-center overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 shadow-sm">
-              <a
-                href="https://maps.google.com/?q=3585+Valley+Drive+Pittsburgh+PA+15234"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center gap-2 text-gray-500 transition hover:text-[#990000]"
-              >
-                <MapPinIcon className="h-8 w-8" />
-                <span className="text-sm font-medium">View on Google Maps</span>
-              </a>
+            {/* Map embed */}
+            <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
+              <iframe
+                src="https://maps.google.com/maps?q=3585+Valley+Drive+Pittsburgh+PA+15234&output=embed"
+                width="100%"
+                height="300"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-lg"
+              />
             </div>
           </div>
 

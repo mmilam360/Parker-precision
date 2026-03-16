@@ -29,16 +29,16 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="bg-[#111827] py-20 sm:py-28">
+    <section id="services" className="bg-gray-50 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
             Capabilities
           </p>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             What We Do
           </h2>
-          <p className="mt-4 text-lg leading-8 text-white/70">
+          <p className="mt-4 text-lg leading-8 text-gray-600">
             Parker Plastics supports B2B manufacturing programs with integrated
             engineering, tooling, and production expertise — all under one roof.
           </p>
@@ -50,15 +50,15 @@ export function Services() {
             return (
               <article
                 key={service.title}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 transition-all duration-300 hover:border-[#990000]/40 hover:bg-white/10"
+                className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:border-[#990000]/40 hover:shadow-md"
               >
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#990000] text-white shadow-lg shadow-[#990000]/20">
                   <Icon className="h-7 w-7" />
                 </div>
-                <h3 className="mt-6 text-xl font-bold text-white">
+                <h3 className="mt-6 text-xl font-bold text-gray-900">
                   {service.title}
                 </h3>
-                <p className="mt-4 text-base leading-7 text-white/65">
+                <p className="mt-4 text-base leading-7 text-gray-600">
                   {service.description}
                 </p>
                 <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#990000] transition-all duration-300 group-hover:w-full" />
