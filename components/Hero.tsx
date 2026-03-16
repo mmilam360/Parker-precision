@@ -13,7 +13,7 @@ export function Hero() {
         muted
         loop
         playsInline
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover object-[center_60%] md:object-center"
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
@@ -22,7 +22,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40" />
 
       {/* Content */}
-      <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-32 sm:px-6 lg:px-8">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pt-20 pb-16 sm:px-6 sm:py-32 lg:px-8">
         <div className="max-w-3xl">
           {/* Badge */}
           <div className="inline-flex items-center rounded-full border border-[#990000]/40 bg-[#990000]/10 px-4 py-1.5 backdrop-blur">
@@ -33,7 +33,7 @@ export function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="mt-8 text-5xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="mt-8 text-3xl font-black tracking-tight text-white sm:text-5xl lg:text-7xl">
             Pittsburgh&apos;s Pioneer
             <br />
             <span className="text-[#990000]">Injection Moulders</span>
