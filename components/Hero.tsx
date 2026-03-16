@@ -48,7 +48,7 @@ export function Hero() {
           </p>
 
           {/* CTAs */}
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+          <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center md:mt-10">
             <Link
               href="#contact"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#990000] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#990000]/30 transition hover:bg-[#7a0000] hover:shadow-xl hover:shadow-[#990000]/40"
@@ -65,7 +65,7 @@ export function Hero() {
           </div>
 
           {/* Trust indicators */}
-          <div className="mt-12 flex flex-wrap gap-6 text-sm text-white/50">
+          <div className="mt-4 grid grid-cols-2 gap-2 text-sm text-white/50 sm:mt-8 sm:flex sm:flex-wrap sm:gap-6">
             <span>✦ 80+ Years Experience</span>
             <span>✦ In-House Tool & Die</span>
             <span>✦ Fortune 500 OEM Clients</span>
