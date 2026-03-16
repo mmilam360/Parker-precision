@@ -1,14 +1,7 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import { useEffect } from "react";
 
 export function Hero() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <section
       id="top"
@@ -71,7 +64,7 @@ export function Hero() {
             </Link>
           </div>
 
-          {/* Trust indicators — inline row, always visible */}
+          {/* Trust indicators */}
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-white/60 sm:text-sm">
             <span>✦ 80+ Years Experience</span>
             <span>✦ In-House Tool &amp; Die</span>
