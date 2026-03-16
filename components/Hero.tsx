@@ -1,11 +1,18 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { useEffect } from "react";
 
 export function Hero() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section
       id="top"
-      className="relative isolate flex h-screen flex-col overflow-hidden bg-[#111827]"
+      className="relative isolate flex h-[100dvh] flex-col overflow-hidden bg-[#111827]"
     >
       {/* Background video */}
       <video
@@ -24,7 +31,7 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative mx-auto flex h-full w-full max-w-7xl flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
+        <div className="w-full max-w-3xl">
           {/* Badge */}
           <div className="inline-flex items-center rounded-full border border-[#990000]/40 bg-[#990000]/10 px-4 py-1.5 backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-[#990000]" />
@@ -34,40 +41,40 @@ export function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="mt-8 text-3xl font-black tracking-tight text-white sm:text-5xl lg:text-7xl">
+          <h1 className="mt-4 text-3xl font-black tracking-tight text-white sm:text-5xl lg:text-7xl">
             Pittsburgh&apos;s Pioneer
             <br />
             <span className="text-[#990000]">Injection Moulders</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
+          <p className="mt-3 max-w-2xl text-base leading-7 text-white/70 sm:text-xl sm:leading-8">
             Precision plastics manufacturing since 1946. Serving top OEM companies
             with engineering, tool &amp; die, and full-service injection molding —
             all under one roof.
           </p>
 
           {/* CTAs */}
-          <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center md:mt-10">
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:mt-8">
             <Link
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#990000] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#990000]/30 transition hover:bg-[#7a0000] hover:shadow-xl hover:shadow-[#990000]/40"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#990000] px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-[#990000]/30 transition hover:bg-[#7a0000]"
             >
               Request a Quote
               <ArrowRightIcon className="h-4 w-4" />
             </Link>
             <Link
               href="#services"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 px-7 py-4 text-base font-semibold text-white transition hover:border-white/50 hover:bg-white/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 px-7 py-3.5 text-base font-semibold text-white transition hover:border-white/50 hover:bg-white/10"
             >
               View Capabilities
             </Link>
           </div>
 
-          {/* Trust indicators */}
-          <div className="mt-4 grid grid-cols-2 gap-2 text-sm text-white/50 sm:mt-8 sm:flex sm:flex-wrap sm:gap-6">
+          {/* Trust indicators — inline row, always visible */}
+          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-white/60 sm:text-sm">
             <span>✦ 80+ Years Experience</span>
-            <span>✦ In-House Tool & Die</span>
+            <span>✦ In-House Tool &amp; Die</span>
             <span>✦ Fortune 500 OEM Clients</span>
           </div>
         </div>
