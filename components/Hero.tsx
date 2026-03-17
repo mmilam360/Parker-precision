@@ -27,9 +27,9 @@ export function Hero() {
       <div className="relative mx-auto flex h-full w-full max-w-7xl flex-col items-start justify-center px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-3xl">
           {/* Badge */}
-          <div className="animate-fade-in-up inline-flex items-center rounded-full border border-[#990000]/50 bg-[#990000]/15 px-5 py-2 backdrop-blur-sm">
-            <span className="h-2 w-2 rounded-full bg-[#990000] shadow-[0_0_8px_rgba(153,0,0,0.6)]" />
-            <span className="ml-3 text-sm font-semibold tracking-wide text-white/90">
+          <div className="animate-fade-in-up inline-flex max-w-full items-center rounded-full border border-[#990000]/50 bg-[#990000]/15 px-4 py-2 backdrop-blur-sm">
+            <span className="h-2 w-2 shrink-0 rounded-full bg-[#990000] shadow-[0_0_8px_rgba(153,0,0,0.6)]" />
+            <span className="ml-3 text-xs font-semibold tracking-wide text-white/90 sm:text-sm">
               Established 1946 &middot; Pittsburgh Region, Pennsylvania
             </span>
           </div>
@@ -69,16 +69,16 @@ export function Hero() {
 
       {/* Trust bar pinned to bottom */}
       <div className="animate-fade-in animation-delay-500 relative border-t border-white/10 bg-black/40 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-y-2 px-4 py-4 sm:justify-start sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 items-center gap-2 px-4 py-4 sm:flex sm:flex-wrap sm:justify-start sm:gap-y-2 sm:px-6 lg:px-8">
           {[
             "80+ Years Experience",
             "40–150 Ton Press Capacity",
             "In-House Tool & Die",
             "24/7 Production",
           ].map((text, i) => (
-            <span key={text} className="flex items-center gap-2 text-sm font-medium text-white/70">
-              {i > 0 && <span className="h-3 w-px bg-white/20 mx-3" />}
-              <span className="h-1.5 w-1.5 rounded-full bg-[#990000]" />
+            <span key={text} className="flex items-center gap-2 text-xs font-medium text-white/70 sm:text-sm">
+              {i > 0 && <span className="hidden h-3 w-px bg-white/20 mx-3 sm:block" />}
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#990000]" />
               {text}
             </span>
           ))}
