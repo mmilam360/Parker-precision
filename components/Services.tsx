@@ -62,8 +62,13 @@ export function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [visible, setVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    setIsMobile(window.innerWidth < 1024);
+    const onResize = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener("resize", onResize);
+
     const section = sectionRef.current;
     if (!section) return;
 
@@ -93,6 +98,7 @@ export function Services() {
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
@@ -100,25 +106,34 @@ export function Services() {
     <section
       id="services"
       ref={sectionRef}
-      className="relative bg-[#0d0d0d] py-20 sm:py-28 overflow-hidden"
-      style={{ minHeight: "700px" }}
+      className="relative bg-[#0d0d0d] overflow-hidden"
     >
-      {/* Full-bleed 3D part as background */}
-      <div className="absolute inset-0 w-full h-full z-0">
-        <PartViewer scrollProgress={scrollProgress} visible={visible} />
-      </div>
+      {/* Desktop only: Full-bleed 3D part as background */}
+      {!isMobile && (
+        <>
+          <div className="absolute inset-0 w-full h-full z-0">
+            <PartViewer scrollProgress={scrollProgress} visible={visible} isMobile={false} />
+          </div>
+          {/* Dark gradient overlay — left side for text readability */}
+          <div
+            className="pointer-events-none absolute inset-0 z-[1]"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0.55) 55%, transparent 100%)",
+            }}
+          />
+        </>
+      )}
 
-      {/* Dark gradient overlay — left side for text readability */}
-      <div
-        className="pointer-events-none absolute inset-0 z-[1]"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0.55) 55%, transparent 100%)",
-        }}
-      />
+      {/* Mobile: part at top, fixed height, then cards below */}
+      {isMobile && (
+        <div className="relative z-10 w-full" style={{ height: 240 }}>
+          <PartViewer scrollProgress={scrollProgress} visible={visible} isMobile={true} />
+        </div>
+      )}
 
-      {/* Content sits on top */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Content */}
+      <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 ${isMobile ? "py-10" : "py-20 sm:py-28"}`}>
         <div className="lg:w-[60%]">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
             Capabilities

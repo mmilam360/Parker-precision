@@ -6,9 +6,10 @@ import * as THREE from "three";
 interface PartViewerProps {
   scrollProgress: number; // 0 to 1
   visible: boolean;
+  isMobile?: boolean;
 }
 
-export default function PartViewer({ scrollProgress, visible }: PartViewerProps) {
+export default function PartViewer({ scrollProgress, visible, isMobile = false }: PartViewerProps) {
   const mountRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<{
     renderer: THREE.WebGLRenderer;
@@ -45,9 +46,10 @@ export default function PartViewer({ scrollProgress, visible }: PartViewerProps)
     // Scene
     const scene = new THREE.Scene();
 
-    // Camera — closer for full-bleed look
+    // Camera — pulled back on mobile so part is fully visible
+    const cameraZ = isMobile ? 9 : 5;
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.set(0, 1.2, 5);
+    camera.position.set(0, 1.2, cameraZ);
     camera.lookAt(0, 0, 0);
 
     // Lighting — dramatic industrial feel
