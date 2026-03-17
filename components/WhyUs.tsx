@@ -57,7 +57,7 @@ export function WhyUs() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
             Why Parker Plastics
           </p>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Built Different. Built to Last.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/50">

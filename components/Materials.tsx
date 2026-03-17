@@ -14,13 +14,13 @@ const materials = [
 
 export function Materials() {
   return (
-    <section id="materials" className="bg-[#f9fafb] py-20 sm:py-28">
+    <section id="materials" className="bg-[#fafafa] py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
             Materials
           </p>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Materials We Work With
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-gray-600">

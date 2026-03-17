@@ -62,7 +62,7 @@ export function Services() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
             Capabilities
           </p>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             What We Do
           </h2>
           <p className="mt-4 text-lg leading-8 text-gray-600">
