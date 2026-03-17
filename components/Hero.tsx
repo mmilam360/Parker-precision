@@ -35,7 +35,7 @@ export function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="animate-fade-in-up animation-delay-100 mt-6 text-4xl font-black uppercase tracking-tight text-white sm:text-6xl lg:text-7xl lg:leading-[0.95]">
+          <h1 className="animate-fade-in-up animation-delay-100 mt-6 text-[2rem] font-black uppercase tracking-tight text-white sm:text-6xl lg:text-7xl lg:leading-[0.95]">
             Injection Molding &amp; CNC Machining
             <br />
             <span className="bg-gradient-to-r from-[#990000] to-[#cc2200] bg-clip-text text-transparent">
@@ -49,17 +49,17 @@ export function Hero() {
           </p>
 
           {/* CTAs */}
-          <div className="animate-fade-in-up animation-delay-300 mt-6 sm:mt-10 flex flex-wrap gap-3 sm:flex-row sm:items-center">
+          <div className="animate-fade-in-up animation-delay-300 mt-6 sm:mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               href="#contact"
-              className="animate-pulse-glow group inline-flex items-center justify-center gap-2 rounded-xl bg-[#990000] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#990000]/30 transition-all duration-300 hover:bg-[#7a0000] hover:shadow-xl hover:shadow-[#990000]/40 hover:scale-[1.02]"
+              className="animate-pulse-glow group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#990000] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#990000]/30 transition-all duration-300 hover:bg-[#7a0000] hover:shadow-xl hover:shadow-[#990000]/40 hover:scale-[1.02] sm:w-auto"
             >
               Request a Quote
               <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link
               href="#services"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/5 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/10"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/5 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/10 sm:w-auto"
             >
               View Capabilities
             </Link>
@@ -77,7 +77,7 @@ export function Hero() {
             "24/7 Production",
           ].map((text, i) => (
             <span key={text} className="flex items-center gap-2 text-sm font-medium text-white/70">
-              {i > 0 && <span className="hidden sm:block h-3 w-px bg-white/20 mx-4" />}
+              {i > 0 && <span className="h-3 w-px bg-white/20 mx-3" />}
               <span className="h-1.5 w-1.5 rounded-full bg-[#990000]" />
               {text}
             </span>

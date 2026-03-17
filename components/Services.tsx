@@ -76,7 +76,7 @@ export function Services() {
             return (
               <article
                 key={service.title}
-                className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:border-[#990000]/30 hover:shadow-lg hover:-translate-y-1"
+                className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-all duration-300 hover:border-[#990000]/30 hover:shadow-lg hover:-translate-y-1 sm:p-8"
               >
                 {/* Step number watermark */}
                 <span className="absolute -right-2 -top-4 text-8xl font-black text-gray-100 transition-colors duration-300 group-hover:text-[#990000]/10">

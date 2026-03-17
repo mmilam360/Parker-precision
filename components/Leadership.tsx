@@ -31,7 +31,7 @@ export function Leadership() {
           {team.map((member) => (
             <div
               key={member.name}
-              className="group flex flex-col items-center rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm transition-all duration-300 hover:border-[#990000]/30 hover:shadow-md hover:-translate-y-0.5"
+              className="group flex flex-col items-center rounded-2xl border border-gray-200 bg-white p-5 text-center shadow-sm transition-all duration-300 hover:border-[#990000]/30 hover:shadow-md hover:-translate-y-0.5 sm:p-8"
             >
               <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-[#990000]/10 ring-4 ring-[#990000]/10 transition-all duration-300 group-hover:ring-[#990000]/30">
                 <UserCircleIcon className="h-16 w-16 text-[#990000]/70" />

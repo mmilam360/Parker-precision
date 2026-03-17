@@ -62,7 +62,7 @@ export function Industries() {
             return (
               <div
                 key={industry.name}
-                className="group flex items-start gap-5 rounded-2xl border border-gray-100 bg-[#fafafa] p-7 transition-all duration-300 hover:border-[#990000]/20 hover:bg-white hover:shadow-md hover:-translate-y-0.5"
+                className="group flex items-start gap-4 rounded-2xl border border-gray-100 bg-[#fafafa] p-5 transition-all duration-300 hover:border-[#990000]/20 hover:bg-white hover:shadow-md hover:-translate-y-0.5 sm:gap-5 sm:p-7"
               >
                 <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#990000]/10 ring-1 ring-[#990000]/20 transition-all duration-300 group-hover:bg-[#990000] group-hover:ring-[#990000]">
                   <Icon className="h-6 w-6 text-[#990000] transition-colors duration-300 group-hover:text-white" />
