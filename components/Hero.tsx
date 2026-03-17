@@ -44,7 +44,7 @@ export function Hero() {
           </h1>
 
           {/* Subheadline */}
-          <p className="animate-fade-in-up animation-delay-200 mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-xl sm:leading-8">
+          <p className="animate-fade-in-up animation-delay-200 mt-5 max-w-2xl text-[0.95rem] leading-7 text-white/70 sm:text-xl sm:leading-8">
             40–150 ton capacity. In-house tooling. Serving firearms, defense, automotive, and virtually every industry — family-owned since 1946.
           </p>
 

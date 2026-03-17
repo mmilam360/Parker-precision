@@ -80,10 +80,10 @@ export function WhyUs() {
                   <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-[#990000]/15 ring-1 ring-[#990000]/20 transition-all duration-300 group-hover:bg-[#990000]/25 group-hover:ring-[#990000]/40">
                     <Icon className="h-7 w-7 text-[#990000]" />
                   </div>
-                  <p className="mt-6 text-4xl font-black tracking-tight text-[#990000]">
+                  <p className="mt-5 text-4xl font-black tracking-tight text-[#990000]">
                     {item.value}
                   </p>
-                  <p className="mt-2 text-lg font-bold text-white">{item.label}</p>
+                  <p className="mt-1.5 text-lg font-bold text-white">{item.label}</p>
                   <p className="mt-3 text-sm leading-6 text-white/50">{item.sub}</p>
                 </div>
               </div>

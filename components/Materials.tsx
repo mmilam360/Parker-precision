@@ -54,7 +54,7 @@ export function Materials() {
           </p>
           <a
             href="#contact"
-            className="mt-6 inline-flex items-center justify-center rounded-full bg-[#990000] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#7a0000]"
+            className="mt-6 inline-flex items-center justify-center rounded-xl bg-[#990000] px-6 py-3.5 text-sm font-bold text-white shadow-md shadow-[#990000]/25 transition hover:bg-[#7a0000]"
           >
             Talk to an Engineer
           </a>
