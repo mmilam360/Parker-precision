@@ -17,6 +17,14 @@ export default function PartViewer({ scrollProgress, visible }: PartViewerProps)
     part: THREE.Group;
     animId: number;
   } | null>(null);
+  const scrollRef = useRef(scrollProgress);
+
+  useEffect(() => {
+    scrollRef.current = scrollProgress;
+    if (sceneRef.current) {
+      // scroll-driven Y is handled in the animation loop
+    }
+  }, [scrollProgress]);
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -37,156 +45,144 @@ export default function PartViewer({ scrollProgress, visible }: PartViewerProps)
     // Scene
     const scene = new THREE.Scene();
 
-    // Camera
+    // Camera — closer for full-bleed look
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.set(0, 1.5, 7);
+    camera.position.set(0, 1.2, 5);
     camera.lookAt(0, 0, 0);
 
     // Lighting — dramatic industrial feel
-    const ambient = new THREE.AmbientLight(0xffffff, 0.2);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.25);
     scene.add(ambient);
 
-    // Main key light — top right white
-    const keyLight = new THREE.DirectionalLight(0xffffff, 3.5);
-    keyLight.position.set(4, 6, 3);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 4.0);
+    keyLight.position.set(5, 8, 4);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.set(1024, 1024);
     scene.add(keyLight);
 
-    // Maroon fill light — bottom left
-    const fillLight = new THREE.DirectionalLight(0x990000, 1.8);
-    fillLight.position.set(-4, -3, 2);
+    const fillLight = new THREE.DirectionalLight(0x990000, 2.0);
+    fillLight.position.set(-5, -3, 2);
     scene.add(fillLight);
 
-    // Rim light — behind, cool
-    const rimLight = new THREE.DirectionalLight(0xaabbff, 1.2);
-    rimLight.position.set(0, 2, -5);
+    const rimLight = new THREE.DirectionalLight(0xaabbff, 1.5);
+    rimLight.position.set(0, 3, -6);
     scene.add(rimLight);
 
-    // Material — industrial gray plastic
+    // Materials
     const mat = new THREE.MeshStandardMaterial({
-      color: 0x787878,
-      metalness: 0.35,
-      roughness: 0.38,
-      envMapIntensity: 1.0,
+      color: 0xb0b0b0,
+      metalness: 0.75,
+      roughness: 0.22,
     });
 
     const darkMat = new THREE.MeshStandardMaterial({
-      color: 0x3a3a3a,
-      metalness: 0.5,
+      color: 0x1a1a1a,
+      metalness: 0.6,
       roughness: 0.3,
     });
 
-    const accentMat = new THREE.MeshStandardMaterial({
-      color: 0x880000,
-      metalness: 0.6,
-      roughness: 0.25,
-      emissive: 0x330000,
-      emissiveIntensity: 0.3,
+    const stepMat = new THREE.MeshStandardMaterial({
+      color: 0x989898,
+      metalness: 0.75,
+      roughness: 0.28,
     });
 
-    // Build the part — a precision flanged connector/housing
+    // ---- BUILD CNC MACHINED BRACKET/HOUSING ----
     const part = new THREE.Group();
 
-    // Main body cylinder
-    const bodyGeo = new THREE.CylinderGeometry(1.0, 1.0, 2.2, 48, 1);
+    // Main body: rectangular block (2.5 × 1.2 × 3.5)
+    const bodyGeo = new THREE.BoxGeometry(2.5, 1.2, 3.5);
     const body = new THREE.Mesh(bodyGeo, mat);
     body.castShadow = true;
     part.add(body);
 
-    // Top flange
-    const topFlangeGeo = new THREE.CylinderGeometry(1.5, 1.5, 0.22, 48);
-    const topFlange = new THREE.Mesh(topFlangeGeo, mat);
-    topFlange.position.y = 1.21;
-    topFlange.castShadow = true;
-    part.add(topFlange);
+    // Stepped section on top (inset, smaller box)
+    const stepGeo = new THREE.BoxGeometry(1.8, 0.5, 2.6);
+    const step = new THREE.Mesh(stepGeo, stepMat);
+    step.position.set(0, 0.85, 0);
+    step.castShadow = true;
+    part.add(step);
 
-    // Bottom flange
-    const botFlangeGeo = new THREE.CylinderGeometry(1.5, 1.5, 0.22, 48);
-    const botFlange = new THREE.Mesh(botFlangeGeo, mat);
-    botFlange.position.y = -1.21;
-    botFlange.castShadow = true;
-    part.add(botFlange);
-
-    // Inner bore
-    const boreGeo = new THREE.CylinderGeometry(0.55, 0.55, 2.7, 32);
+    // Central bore through middle (Z axis) — dark cylinder
+    const boreGeo = new THREE.CylinderGeometry(0.28, 0.28, 3.6, 32);
     const bore = new THREE.Mesh(boreGeo, darkMat);
-    bore.castShadow = false;
+    bore.rotation.x = Math.PI / 2;
     part.add(bore);
 
-    // Mounting holes on top flange (6 holes)
-    for (let i = 0; i < 6; i++) {
-      const angle = (i / 6) * Math.PI * 2;
-      const holeGeo = new THREE.CylinderGeometry(0.1, 0.1, 0.3, 16);
+    // 4 mounting holes on corners (through body, Z direction)
+    const cornerOffsets = [
+      [-0.9, -1.35],
+      [0.9, -1.35],
+      [-0.9, 1.35],
+      [0.9, 1.35],
+    ];
+    for (const [x, z] of cornerOffsets) {
+      const holeGeo = new THREE.CylinderGeometry(0.12, 0.12, 1.3, 20);
       const hole = new THREE.Mesh(holeGeo, darkMat);
-      hole.position.set(Math.cos(angle) * 1.25, 1.21, Math.sin(angle) * 1.25);
       hole.rotation.x = Math.PI / 2;
+      hole.position.set(x, 0, z);
       part.add(hole);
+      // Counterbore ring (wider shallow cylinder on top face)
+      const cbGeo = new THREE.CylinderGeometry(0.22, 0.22, 0.15, 20);
+      const cb = new THREE.Mesh(cbGeo, darkMat);
+      cb.position.set(x, 0.6, z);
+      part.add(cb);
     }
 
-    // Mounting holes on bottom flange
-    for (let i = 0; i < 6; i++) {
-      const angle = (i / 6) * Math.PI * 2 + Math.PI / 6;
-      const holeGeo = new THREE.CylinderGeometry(0.1, 0.1, 0.3, 16);
-      const hole = new THREE.Mesh(holeGeo, darkMat);
-      hole.position.set(Math.cos(angle) * 1.25, -1.21, Math.sin(angle) * 1.25);
-      hole.rotation.x = Math.PI / 2;
-      part.add(hole);
-    }
-
-    // Ribs on body (6 ribs)
-    for (let i = 0; i < 6; i++) {
-      const angle = (i / 6) * Math.PI * 2;
-      const ribGeo = new THREE.BoxGeometry(0.12, 2.0, 0.18);
+    // 2 side ribs (structural detail on long sides)
+    for (const side of [-1.28, 1.28]) {
+      const ribGeo = new THREE.BoxGeometry(0.14, 1.0, 2.8);
       const rib = new THREE.Mesh(ribGeo, mat);
-      rib.position.set(Math.cos(angle) * 1.0, 0, Math.sin(angle) * 1.0);
-      rib.rotation.y = -angle;
+      rib.position.set(side, -0.1, 0);
       rib.castShadow = true;
       part.add(rib);
     }
 
-    // Center accent ring
-    const ringGeo = new THREE.TorusGeometry(1.0, 0.08, 16, 64);
-    const ring = new THREE.Mesh(ringGeo, accentMat);
-    ring.rotation.x = Math.PI / 2;
-    part.add(ring);
+    // Boss features (raised circular pads) on front face
+    for (const bossPos of [[-0.7, 0.2], [0.7, 0.2], [0, -0.35]]) {
+      const bossGeo = new THREE.CylinderGeometry(0.28, 0.28, 0.12, 24);
+      const boss = new THREE.Mesh(bossGeo, stepMat);
+      boss.rotation.x = Math.PI / 2;
+      boss.position.set(bossPos[0], bossPos[1], 1.76);
+      part.add(boss);
+      // Boss hole
+      const bHoleGeo = new THREE.CylinderGeometry(0.1, 0.1, 0.16, 16);
+      const bHole = new THREE.Mesh(bHoleGeo, darkMat);
+      bHole.rotation.x = Math.PI / 2;
+      bHole.position.set(bossPos[0], bossPos[1], 1.77);
+      part.add(bHole);
+    }
 
-    // Second accent ring
-    const ring2Geo = new THREE.TorusGeometry(1.0, 0.05, 12, 64);
-    const ring2 = new THREE.Mesh(ring2Geo, accentMat);
-    ring2.rotation.x = Math.PI / 2;
-    ring2.position.y = 0.6;
-    part.add(ring2);
+    // Chamfer simulation: thin inset face outlines (EdgesGeometry)
+    const edgesGeo = new THREE.EdgesGeometry(bodyGeo);
+    const edgesMat = new THREE.LineBasicMaterial({ color: 0xdddddd, linewidth: 1 });
+    const edges = new THREE.LineSegments(edgesGeo, edgesMat);
+    part.add(edges);
 
-    const ring3 = new THREE.Mesh(ring2Geo.clone(), accentMat);
-    ring3.rotation.x = Math.PI / 2;
-    ring3.position.y = -0.6;
-    part.add(ring3);
+    const stepEdgesGeo = new THREE.EdgesGeometry(stepGeo);
+    const stepEdges = new THREE.LineSegments(stepEdgesGeo, edgesMat);
+    stepEdges.position.copy(step.position);
+    part.add(stepEdges);
 
-    // Slight tilt for 3/4 view
-    part.rotation.x = 0.3;
+    // Slight initial tilt for a nice 3/4 view
+    part.rotation.x = 0.25;
     scene.add(part);
 
-    // Shadow plane (subtle)
-    const planeGeo = new THREE.PlaneGeometry(12, 12);
-    const planeMat = new THREE.ShadowMaterial({ opacity: 0.2 });
-    const plane = new THREE.Mesh(planeGeo, planeMat);
-    plane.rotation.x = -Math.PI / 2;
-    plane.position.y = -2.0;
-    plane.receiveShadow = true;
-    scene.add(plane);
-
-    // Animate
+    // Animate — multi-axis rotation
     let animId = 0;
     const animate = () => {
       animId = requestAnimationFrame(animate);
+      const now = Date.now();
+      const sp = scrollRef.current;
+      part.rotation.y = sp * Math.PI * 4;
+      part.rotation.x = 0.25 + Math.sin(now * 0.0003) * 0.3;
+      part.rotation.z = Math.sin(now * 0.0002) * 0.15;
       renderer.render(scene, camera);
     };
     animate();
 
     sceneRef.current = { renderer, scene, camera, part, animId };
 
-    // Resize handler
     const onResize = () => {
       if (!mountRef.current || !sceneRef.current) return;
       const w = mountRef.current.clientWidth;
@@ -206,19 +202,12 @@ export default function PartViewer({ scrollProgress, visible }: PartViewerProps)
     };
   }, []);
 
-  // Update rotation based on scroll
-  useEffect(() => {
-    if (!sceneRef.current) return;
-    const { part } = sceneRef.current;
-    part.rotation.y = scrollProgress * Math.PI * 3;
-  }, [scrollProgress]);
-
   return (
     <div
       ref={mountRef}
       className="w-full h-full"
       style={{
-        opacity: visible ? 1 : 0,
+        opacity: visible ? 0.85 : 0,
         transition: "opacity 0.8s ease",
       }}
     />

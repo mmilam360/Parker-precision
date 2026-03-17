@@ -80,7 +80,6 @@ export function Services() {
       const rect = section.getBoundingClientRect();
       const windowH = window.innerHeight;
       const sectionH = section.offsetHeight;
-      // progress: 0 when top of section hits bottom of viewport, 1 when bottom of section leaves top
       const progress = Math.max(
         0,
         Math.min(1, (windowH - rect.top) / (windowH + sectionH))
@@ -102,78 +101,67 @@ export function Services() {
       id="services"
       ref={sectionRef}
       className="relative bg-[#0d0d0d] py-20 sm:py-28 overflow-hidden"
+      style={{ minHeight: "700px" }}
     >
-      {/* Maroon radial glow behind the 3D part */}
+      {/* Full-bleed 3D part as background */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        <PartViewer scrollProgress={scrollProgress} visible={visible} />
+      </div>
+
+      {/* Dark gradient overlay — left side for text readability */}
       <div
-        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 w-[50%] h-[80%] hidden lg:block"
+        className="pointer-events-none absolute inset-0 z-[1]"
         style={{
           background:
-            "radial-gradient(ellipse at center, rgba(153,0,0,0.18) 0%, transparent 70%)",
+            "linear-gradient(to right, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0.55) 55%, transparent 100%)",
         }}
       />
 
+      {/* Content sits on top */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Desktop: two-column layout */}
-        <div className="lg:flex lg:items-center lg:gap-12">
-          {/* Left: text + cards */}
-          <div className="lg:w-[58%]">
-            <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
-                Capabilities
-              </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                What We Do
-              </h2>
-              <p className="mt-4 text-lg leading-8 text-gray-400">
-                Parker Plastics is a one-stop shop — injection molding, CNC
-                machining, and in-house tooling all under one roof in the
-                Pittsburgh region.
-              </p>
-            </div>
+        <div className="lg:w-[60%]">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
+            Capabilities
+          </p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            What We Do
+          </h2>
+          <p className="mt-4 text-lg leading-8 text-gray-400">
+            Parker Plastics is a one-stop shop — injection molding, CNC
+            machining, and in-house tooling all under one roof in the
+            Pittsburgh region.
+          </p>
 
-            {/* Mobile: 3D part above cards */}
-            <div className="lg:hidden mt-8 mx-auto w-[260px] h-[260px]">
-              <PartViewer scrollProgress={scrollProgress} visible={visible} />
-            </div>
+          <div className="mt-10 grid sm:mt-14 gap-5 sm:grid-cols-2">
+            {services.map((service) => {
+              const Icon = service.icon;
+              return (
+                <article
+                  key={service.title}
+                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0d0d0d]/70 backdrop-blur-sm p-5 transition-all duration-300 hover:border-[#990000]/50 hover:bg-[#0d0d0d]/80 hover:-translate-y-1"
+                >
+                  {/* Step number watermark */}
+                  <span className="absolute -right-2 -top-4 text-8xl font-black text-white/5 transition-colors duration-300 group-hover:text-[#990000]/15">
+                    {service.num}
+                  </span>
 
-            <div className="mt-10 grid sm:mt-14 gap-5 sm:grid-cols-2">
-              {services.map((service) => {
-                const Icon = service.icon;
-                return (
-                  <article
-                    key={service.title}
-                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-5 transition-all duration-300 hover:border-[#990000]/50 hover:bg-white/8 hover:-translate-y-1"
-                  >
-                    {/* Step number watermark */}
-                    <span className="absolute -right-2 -top-4 text-8xl font-black text-white/5 transition-colors duration-300 group-hover:text-[#990000]/15">
-                      {service.num}
-                    </span>
-
-                    <div className="relative">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#990000] text-white shadow-lg shadow-[#990000]/30 transition-transform duration-300 group-hover:scale-110">
-                        <Icon className="h-6 w-6" />
-                      </div>
-                      <h3 className="mt-5 text-lg font-bold text-white">
-                        {service.title}
-                      </h3>
-                      <p className="mt-3 text-sm leading-6 text-gray-400">
-                        {service.description}
-                      </p>
+                  <div className="relative">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#990000] text-white shadow-lg shadow-[#990000]/30 transition-transform duration-300 group-hover:scale-110">
+                      <Icon className="h-6 w-6" />
                     </div>
+                    <h3 className="mt-5 text-lg font-bold text-white">
+                      {service.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-gray-400">
+                      {service.description}
+                    </p>
+                  </div>
 
-                    {/* Bottom accent line */}
-                    <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-[#990000] to-[#cc2200] transition-all duration-500 group-hover:w-full" />
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Right: 3D part (desktop only) */}
-          <div className="hidden lg:flex lg:w-[42%] items-center justify-center">
-            <div className="w-[420px] h-[520px]">
-              <PartViewer scrollProgress={scrollProgress} visible={visible} />
-            </div>
+                  {/* Bottom accent line */}
+                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-[#990000] to-[#cc2200] transition-all duration-500 group-hover:w-full" />
+                </article>
+              );
+            })}
           </div>
         </div>
       </div>
