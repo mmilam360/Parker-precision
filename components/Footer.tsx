@@ -14,7 +14,7 @@ export function Footer() {
   return (
     <footer className="bg-[#333333] text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-3">
+        <div className="grid gap-8 lg:grid-cols-3 sm:gap-12">
           {/* Brand */}
           <div>
             <Image
@@ -71,7 +71,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-6 text-center sm:flex-row sm:text-left sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-1 px-4 py-5 text-center sm:flex-row sm:text-left sm:px-6 lg:px-8">
           <p className="text-sm text-white/50">
             © {new Date().getFullYear()} Parker Plastics Corporation. All rights reserved.
           </p>

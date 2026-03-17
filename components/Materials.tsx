@@ -41,7 +41,7 @@ export function Materials() {
           ))}
         </div>
 
-        <div className="mt-14 rounded-2xl border border-[#990000]/20 bg-white p-8 text-center shadow-sm">
+        <div className="mt-14 rounded-2xl border border-[#990000]/20 bg-white p-5 text-center shadow-sm sm:p-8">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-[#990000]/10">
             <ChatBubbleLeftRightIcon className="h-6 w-6 text-[#990000]" />
           </div>

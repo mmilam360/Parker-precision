@@ -22,7 +22,7 @@ export function Contact() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="mt-10 grid gap-10 sm:mt-14 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Left: Contact Info — shows below form on mobile */}
           <div className="flex flex-col justify-center space-y-8 order-2 lg:order-1">
             <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-8">
