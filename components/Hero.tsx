@@ -27,7 +27,7 @@ export function Hero() {
       <div className="relative mx-auto flex h-full w-full max-w-7xl flex-col items-start justify-center px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-3xl">
           {/* Badge */}
-          <div className="inline-flex items-center rounded-full border border-[#990000]/50 bg-[#990000]/15 px-5 py-2 backdrop-blur-sm">
+          <div className="animate-fade-in-up inline-flex items-center rounded-full border border-[#990000]/50 bg-[#990000]/15 px-5 py-2 backdrop-blur-sm">
             <span className="h-2 w-2 rounded-full bg-[#990000] shadow-[0_0_8px_rgba(153,0,0,0.6)]" />
             <span className="ml-3 text-sm font-semibold tracking-wide text-white/90">
               Established 1946 &middot; Pittsburgh, Pennsylvania
@@ -35,7 +35,7 @@ export function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="mt-6 text-4xl font-black uppercase tracking-tight text-white sm:text-6xl lg:text-8xl lg:leading-[0.95]">
+          <h1 className="animate-fade-in-up animation-delay-100 mt-6 text-4xl font-black uppercase tracking-tight text-white sm:text-6xl lg:text-8xl lg:leading-[0.95]">
             Pittsburgh&apos;s Pioneer
             <br />
             <span className="bg-gradient-to-r from-[#990000] to-[#cc2200] bg-clip-text text-transparent">
@@ -44,17 +44,17 @@ export function Hero() {
           </h1>
 
           {/* Subheadline */}
-          <p className="mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-xl sm:leading-8">
+          <p className="animate-fade-in-up animation-delay-200 mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-xl sm:leading-8">
             Precision plastics manufacturing since 1946. Serving top OEM companies
             with engineering, tool &amp; die, and full-service injection molding —
             all under one roof.
           </p>
 
           {/* CTAs */}
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:mt-10">
+          <div className="animate-fade-in-up animation-delay-300 mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:mt-10">
             <Link
               href="#contact"
-              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#990000] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#990000]/30 transition-all duration-300 hover:bg-[#7a0000] hover:shadow-xl hover:shadow-[#990000]/40 hover:scale-[1.02]"
+              className="animate-pulse-glow group inline-flex items-center justify-center gap-2 rounded-xl bg-[#990000] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#990000]/30 transition-all duration-300 hover:bg-[#7a0000] hover:shadow-xl hover:shadow-[#990000]/40 hover:scale-[1.02]"
             >
               Request a Quote
               <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -70,7 +70,7 @@ export function Hero() {
       </div>
 
       {/* Trust bar pinned to bottom */}
-      <div className="relative border-t border-white/10 bg-black/40 backdrop-blur-md">
+      <div className="animate-fade-in animation-delay-500 relative border-t border-white/10 bg-black/40 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 py-4 sm:justify-start sm:px-6 lg:px-8">
           {[
             { icon: "◆", text: "80+ Years Experience" },
