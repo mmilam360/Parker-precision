@@ -1,13 +1,21 @@
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 
 const team = [
-  { name: "Diane Parker Moore", title: "President" },
-  { name: "Kenneth Murin", title: "Plant Manager" },
   {
-    name: "Wynn Thomas Hann",
-    title: "Director of Operations & Q.C.",
+    name: "Blake Parker",
+    title: "Founder",
+    note: "Nearly 40 years of molding experience. Founded Parker Precision Molding in 1994 with Linda Parker. His legacy and expertise remain the foundation of everything we do.",
   },
-  { name: "Tara D'Agaro", title: "Accounting Department" },
+  {
+    name: "Linda Parker",
+    title: "Co-Founder",
+    note: "Co-founded the company alongside Blake in 1994. After Blake's passing, Linda and the family kept his vision alive and continued building the business he started.",
+  },
+  {
+    name: "Mitchell Parker",
+    title: "Operations",
+    note: "Blake's son. Continuing the family legacy — keeping the machines running, the customers close, and the quality that Blake built into the business from day one.",
+  },
 ];
 
 export function Leadership() {
@@ -16,18 +24,17 @@ export function Leadership() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
-            Leadership
+            Our Story
           </p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            The Team Behind the Work
+            Blake Parker&apos;s Legacy
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-gray-600">
-            Experienced people who know manufacturing — and know how to get it
-            done right.
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            Parker Precision Molding was founded in 1994 by Blake Parker — a craftsman with nearly 40 years in injection molding. After his passing, the family kept his business alive. Over 20 years later, we&apos;re still running.
           </p>
         </div>
 
-        <div className="mt-10 grid sm:mt-14 gap-8 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-10 grid sm:mt-14 gap-8 sm:grid-cols-3">
           {team.map((member) => (
             <div
               key={member.name}
@@ -39,9 +46,10 @@ export function Leadership() {
               <h3 className="mt-6 text-lg font-bold text-gray-900">
                 {member.name}
               </h3>
-              <p className="mt-2 text-sm font-medium uppercase tracking-wide text-gray-500">
+              <p className="mt-2 text-sm font-medium uppercase tracking-wide text-[#990000]">
                 {member.title}
               </p>
+              <p className="mt-4 text-sm leading-6 text-gray-500">{member.note}</p>
             </div>
           ))}
         </div>

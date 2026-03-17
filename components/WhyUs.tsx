@@ -9,6 +9,12 @@ import {
 
 const stats = [
   {
+    value: "30+",
+    label: "Years Family-Owned",
+    sub: "Founded in 1994 by Blake and Linda Parker. Blake brought nearly 40 years of molding expertise. His legacy lives on in every part we run.",
+    icon: BuildingOffice2Icon,
+  },
+  {
     value: "40–150T",
     label: "Press Capacity",
     sub: "Multiple presses covering 40 to 150 US tons — right-sized for your run, from small precision parts to larger structural components.",
@@ -21,28 +27,22 @@ const stats = [
     icon: ClockIcon,
   },
   {
-    value: "1 Roof",
-    label: "Full In-House Capability",
-    sub: "Injection molding, CNC machining, and tool & die under one roof. Fewer handoffs, tighter control, faster turnaround.",
+    value: "In-House",
+    label: "Tool & Die",
+    sub: "Certified journeymen on-site. No outsourcing tooling means faster turnaround, less downtime, and tighter control over your molds.",
     icon: WrenchScrewdriverIcon,
   },
   {
-    value: "80+",
-    label: "Years in Business",
-    sub: "Pittsburgh's original injection moulder since 1946. Decades of process knowledge built into every program we run.",
-    icon: BuildingOffice2Icon,
-  },
-  {
-    value: "Local",
-    label: "Pittsburgh Region",
-    sub: "Belle Vernon, PA — in the heart of southwestern Pennsylvania. Fast turnaround, local relationships, responsive service.",
-    icon: MapPinIcon,
-  },
-  {
-    value: "Every",
-    label: "Industry Served",
-    sub: "Firearms, defense, automotive, utilities, medical, and industrial. If it's made from plastic, we've likely run it.",
+    value: "Since '18",
+    label: "CNC Machining",
+    sub: "In-house CNC added in 2018 — allowing secondary operations directly on molded parts and standalone machining work, all under one roof.",
     icon: UsersIcon,
+  },
+  {
+    value: "Close",
+    label: "Customer Relationships",
+    sub: "We're a small, customer-focused shop. Our business runs on close relationships — you work directly with the people making your parts.",
+    icon: MapPinIcon,
   },
 ];
 
@@ -55,13 +55,13 @@ export function WhyUs() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
-            Why Parker Plastics
+            Why Parker Precision Molding
           </p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Built Different. Built to Last.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/50">
-            Real capacity, real craftsmen, real Pittsburgh. Here&apos;s what makes us different.
+            30 years of family ownership, in-house expertise, and genuine customer partnerships. Here&apos;s what makes us different.
           </p>
         </div>
 

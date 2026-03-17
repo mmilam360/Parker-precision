@@ -34,8 +34,8 @@ const industries = [
     icon: ShoppingBagIcon,
   },
   {
-    name: "Aerospace & Electronics",
-    description: "Engineered plastic parts for aerospace and electronics applications where precision and material performance are non-negotiable.",
+    name: "OEM Manufacturing",
+    description: "Overflow production and contract manufacturing for OEMs and larger molding companies. We run your program when you need the capacity.",
     icon: CpuChipIcon,
   },
 ];
@@ -52,7 +52,7 @@ export function Industries() {
             Who We Serve
           </h2>
           <p className="mt-4 text-lg leading-8 text-gray-600">
-            From firearms to automotive to medical — if your business runs on precision plastic parts, Parker Plastics has the capability and capacity to support it.
+            From firearms to automotive to medical — if your business runs on precision plastic parts, Parker Precision Molding has the capability and capacity to support it.
           </p>
         </div>
 

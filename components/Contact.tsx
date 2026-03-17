@@ -27,9 +27,9 @@ export function Contact() {
           <div className="flex flex-col justify-center space-y-8 order-2 lg:order-1">
             <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-8">
               <h3 className="text-xl font-bold text-gray-900">
-                Parker Plastics Corporation
+                Parker Precision Molding, Inc.
               </h3>
-              <p className="mt-1 text-sm text-gray-500">Pittsburgh, Pennsylvania</p>
+              <p className="mt-1 text-sm text-gray-500">Rostraver Township, Pennsylvania</p>
 
               <div className="mt-8 space-y-5">
                 <div className="flex items-start gap-4">
@@ -39,7 +39,7 @@ export function Contact() {
                   <div>
                     <p className="text-sm font-semibold text-gray-700">Address</p>
                     <p className="mt-0.5 text-sm text-gray-600">
-                      3585 Valley Drive<br />Pittsburgh, PA 15234
+                      129 Landmark Lane<br />Rostraver Township, PA 15012
                     </p>
                   </div>
                 </div>
@@ -51,10 +51,10 @@ export function Contact() {
                   <div>
                     <p className="text-sm font-semibold text-gray-700">Phone</p>
                     <a
-                      href="tel:4125616902"
+                      href="tel:7249308099"
                       className="mt-0.5 block text-sm text-gray-600 transition hover:text-[#990000]"
                     >
-                      412.561.6902
+                      724-930-8099
                     </a>
                   </div>
                 </div>
@@ -66,10 +66,10 @@ export function Contact() {
                   <div>
                     <p className="text-sm font-semibold text-gray-700">Email</p>
                     <a
-                      href="mailto:wynnthomas@parkerplasticscorp.com"
+                      href="mailto:info@parkerprecisionmolding.com"
                       className="mt-0.5 block break-all text-sm text-gray-600 transition hover:text-[#990000]"
                     >
-                      wynnthomas@parkerplasticscorp.com
+                      info@parkerprecisionmolding.com
                     </a>
                   </div>
                 </div>
@@ -79,7 +79,7 @@ export function Contact() {
             {/* Map embed */}
             <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
               <iframe
-                src="https://maps.google.com/maps?q=3585+Valley+Drive+Pittsburgh+PA+15234&output=embed"
+                src="https://maps.google.com/maps?q=129+Landmark+Lane+Rostraver+Township+PA+15012&output=embed"
                 width="100%"
                 height="300"
                 style={{ border: 0 }}

@@ -17,42 +17,42 @@ const services = [
   {
     title: "Plastic Injection Molding",
     description:
-      "40–150 ton press range for short and long production runs. Tight tolerances, consistent quality, and the capacity to scale with your program. Serving OEMs and manufacturers across every major industry.",
+      "40–150 ton presses for short and long production runs. Tight tolerances, consistent quality, and the capacity to scale with your program. Serving OEMs and manufacturers across every major industry.",
     icon: CubeIcon,
     num: "01",
   },
   {
     title: "CNC Machining",
     description:
-      "Precision CNC machining from prototyping through full production runs. In-house lathes, mills, and grinders deliver the accuracy your parts demand — without sending work outside.",
+      "Added in 2018 — in-house CNC machining allows us to process extra steps directly on injection molded parts and take on standalone precision machining work without sending anything outside.",
     icon: CpuChipIcon,
     num: "02",
   },
   {
     title: "Tool & Die",
     description:
-      "Full-service in-house tool and die shop staffed by certified journeymen. Mold design, fabrication, and repair on-site — minimizing downtime and keeping your production on schedule.",
+      "In-house certified journeymen handle mold design, fabrication, repair, and modification on-site. No outsourcing means faster turnaround and tighter control over your tooling.",
     icon: CogIcon,
     num: "03",
   },
   {
-    title: "Engineering & Design",
+    title: "Sampling & Troubleshooting",
     description:
-      "Reverse engineering, mold design, and OEM partnerships. Our team supports your project from concept to production, working directly with your engineers to solve problems before they cost time.",
-    icon: WrenchScrewdriverIcon,
+      "Our specialty since day one — new projects, complex parts, and helping OEMs bring products to market efficiently. We've been solving difficult molding problems for 30+ years.",
+    icon: BeakerIcon,
     num: "04",
   },
   {
-    title: "Prototyping",
+    title: "Contract Manufacturing",
     description:
-      "Fast-turn prototyping for new product development. Get parts in hand quickly to validate your design before committing to full tooling — reducing risk and accelerating your timeline.",
-    icon: BeakerIcon,
+      "Higher-volume production runs and overflow capacity for larger molding companies and OEMs. Machines running 24/7 means we can absorb your overflow and keep your supply chain moving.",
+    icon: WrenchScrewdriverIcon,
     num: "05",
   },
   {
-    title: "Secondary Operations",
+    title: "Assembly & Secondary Operations",
     description:
-      "Complete secondary operations including finishing, assembly, and quality inspection. We handle the details so your parts arrive ready to install or ship — no additional vendors needed.",
+      "Complete in-house finishing, assembly, and secondary operations. Parts leave our facility ready to install or ship — no additional vendors, no extra handoffs.",
     icon: AdjustmentsHorizontalIcon,
     num: "06",
   },
@@ -142,9 +142,9 @@ export function Services() {
             What We Do
           </h2>
           <p className="mt-4 text-lg leading-8 text-gray-400">
-            Parker Plastics is a one-stop shop — injection molding, CNC
-            machining, and in-house tooling all under one roof in the
-            Pittsburgh region.
+            Parker Precision Molding is a one-stop shop — injection molding, CNC
+            machining, and in-house tooling all under one roof in
+            Rostraver Township, PA.
           </p>
 
           <div className="mt-10 grid sm:mt-14 gap-5 sm:grid-cols-2">

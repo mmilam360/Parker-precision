@@ -30,22 +30,22 @@ export function Hero() {
           <div className="animate-fade-in-up inline-flex max-w-full items-center rounded-full border border-[#990000]/50 bg-[#990000]/15 px-4 py-2 backdrop-blur-sm">
             <span className="h-2 w-2 shrink-0 rounded-full bg-[#990000] shadow-[0_0_8px_rgba(153,0,0,0.6)]" />
             <span className="ml-3 text-xs font-semibold tracking-wide text-white/90 sm:text-sm">
-              Established 1946 &middot; Pittsburgh Region, Pennsylvania
+              Family-Owned Since 1994 &middot; Rostraver Township, Pennsylvania
             </span>
           </div>
 
           {/* Headline */}
           <h1 className="animate-fade-in-up animation-delay-100 mt-6 text-[2rem] font-black uppercase tracking-tight text-white sm:text-6xl lg:text-7xl lg:leading-[0.95]">
-            Injection Molding &amp; CNC Machining
+            Precision Injection Molding &amp; CNC Machining
             <br />
             <span className="bg-gradient-to-r from-[#990000] to-[#cc2200] bg-clip-text text-transparent">
-              Pittsburgh Region
+              Southwest PA
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="animate-fade-in-up animation-delay-200 mt-5 max-w-2xl text-[0.95rem] leading-7 text-white/70 sm:text-xl sm:leading-8">
-            40–150 ton capacity. In-house tooling. Serving firearms, defense, automotive, and virtually every industry — family-owned since 1946.
+            Family-owned since 1994. Rostraver Township, PA. 40–150 ton capacity, in-house tooling, 30 years of customer-first manufacturing.
           </p>
 
           {/* CTAs */}
@@ -54,14 +54,14 @@ export function Hero() {
               href="#contact"
               className="animate-pulse-glow group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#990000] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#990000]/30 transition-all duration-300 hover:bg-[#7a0000] hover:shadow-xl hover:shadow-[#990000]/40 hover:scale-[1.02] sm:w-auto"
             >
-              Request a Quote
+              Get a Quote
               <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link
               href="#services"
               className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/5 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/10 sm:w-auto"
             >
-              View Capabilities
+              Request Capacity
             </Link>
           </div>
         </div>
@@ -71,7 +71,7 @@ export function Hero() {
       <div className="animate-fade-in animation-delay-500 relative border-t border-white/10 bg-black/40 backdrop-blur-md">
         <div className="mx-auto grid max-w-7xl grid-cols-2 items-center gap-2 px-4 py-4 sm:flex sm:flex-wrap sm:justify-start sm:gap-y-2 sm:px-6 lg:px-8">
           {[
-            "80+ Years Experience",
+            "30+ Years Experience",
             "40–150 Ton Press Capacity",
             "In-House Tool & Die",
             "24/7 Production",
