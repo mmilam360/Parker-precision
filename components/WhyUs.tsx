@@ -71,7 +71,7 @@ export function WhyUs() {
             return (
               <div
                 key={item.label}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-10 text-center backdrop-blur-sm transition-all duration-300 hover:border-[#990000]/40 hover:bg-white/[0.08] hover:-translate-y-1"
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-sm transition-all duration-300 hover:border-[#990000]/40 hover:bg-white/[0.08] hover:-translate-y-1"
               >
                 {/* Glow effect on hover */}
                 <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-[#990000]/0 to-[#990000]/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:from-[#990000]/10 group-hover:to-transparent" />

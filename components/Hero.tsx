@@ -49,19 +49,13 @@ export function Hero() {
           </p>
 
           {/* CTAs */}
-          <div className="animate-fade-in-up animation-delay-300 mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:mt-10">
+          <div className="animate-fade-in-up animation-delay-300 mt-6 sm:mt-10 flex flex-wrap gap-3 sm:flex-row sm:items-center">
             <Link
               href="#contact"
               className="animate-pulse-glow group inline-flex items-center justify-center gap-2 rounded-xl bg-[#990000] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#990000]/30 transition-all duration-300 hover:bg-[#7a0000] hover:shadow-xl hover:shadow-[#990000]/40 hover:scale-[1.02]"
             >
               Request a Quote
               <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#990000]/50 bg-[#990000]/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-[#990000]/80 hover:bg-[#990000]/20"
-            >
-              Request Capacity
             </Link>
             <Link
               href="#services"
@@ -75,19 +69,17 @@ export function Hero() {
 
       {/* Trust bar pinned to bottom */}
       <div className="animate-fade-in animation-delay-500 relative border-t border-white/10 bg-black/40 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 py-4 sm:justify-start sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-y-2 px-4 py-4 sm:justify-start sm:px-6 lg:px-8">
           {[
-            { icon: "◆", text: "80+ Years Experience" },
-            { icon: "◆", text: "40–150 Ton Press Capacity" },
-            { icon: "◆", text: "In-House Tool & Die" },
-            { icon: "◆", text: "24/7 Production" },
-          ].map((item) => (
-            <span
-              key={item.text}
-              className="flex items-center gap-2 text-sm font-medium text-white/70"
-            >
-              <span className="text-[8px] text-[#990000]">{item.icon}</span>
-              {item.text}
+            "80+ Years Experience",
+            "40–150 Ton Press Capacity",
+            "In-House Tool & Die",
+            "24/7 Production",
+          ].map((text, i) => (
+            <span key={text} className="flex items-center gap-2 text-sm font-medium text-white/70">
+              {i > 0 && <span className="hidden sm:block h-3 w-px bg-white/20 mx-4" />}
+              <span className="h-1.5 w-1.5 rounded-full bg-[#990000]" />
+              {text}
             </span>
           ))}
         </div>

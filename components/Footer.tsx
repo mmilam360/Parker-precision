@@ -4,6 +4,7 @@ import { MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
 
 const navItems = [
   { label: "Services", href: "#services" },
+  { label: "Industries", href: "#industries" },
   { label: "Materials", href: "#materials" },
   { label: "Team", href: "#team" },
   { label: "Contact", href: "#contact" },
@@ -70,12 +71,12 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-6 text-center sm:flex-row sm:text-left sm:px-6 lg:px-8">
           <p className="text-sm text-white/50">
             © {new Date().getFullYear()} Parker Plastics Corporation. All rights reserved.
           </p>
           <p className="text-xs text-white/30">
-            Established 1946 · Pittsburgh, Pennsylvania
+            Established 1946 &middot; Pittsburgh, Pennsylvania
           </p>
         </div>
       </div>
