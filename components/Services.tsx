@@ -12,24 +12,27 @@ const services = [
     description:
       "From reverse engineering to mold design and modification — our engineering team supports your project at every stage. We work with top OEM companies to deliver precision and reliability.",
     icon: WrenchScrewdriverIcon,
+    num: "01",
   },
   {
     title: "Tool & Die",
     description:
       "Full-service in-house tool and die shop with certified journeymen. CNC machines, lathes, mills, and grinders on-site — minimizing downtime and keeping your production on schedule.",
     icon: CogIcon,
+    num: "02",
   },
   {
     title: "Secondary Operations",
     description:
       "Complete secondary operations on finished products to ensure the best quality. We handle the details so your parts arrive ready to use.",
     icon: AdjustmentsHorizontalIcon,
+    num: "03",
   },
 ];
 
 export function Services() {
   return (
-    <section id="services" className="bg-gray-50 py-20 sm:py-28">
+    <section id="services" className="bg-[#fafafa] py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
@@ -50,18 +53,27 @@ export function Services() {
             return (
               <article
                 key={service.title}
-                className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:border-[#990000]/40 hover:shadow-md"
+                className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:border-[#990000]/30 hover:shadow-lg hover:-translate-y-1"
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#990000] text-white shadow-lg shadow-[#990000]/20">
-                  <Icon className="h-7 w-7" />
+                {/* Step number watermark */}
+                <span className="absolute -right-2 -top-4 text-8xl font-black text-gray-100 transition-colors duration-300 group-hover:text-[#990000]/10">
+                  {service.num}
+                </span>
+
+                <div className="relative">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#990000] text-white shadow-lg shadow-[#990000]/20 transition-transform duration-300 group-hover:scale-110">
+                    <Icon className="h-7 w-7" />
+                  </div>
+                  <h3 className="mt-6 text-xl font-bold text-gray-900">
+                    {service.title}
+                  </h3>
+                  <p className="mt-4 text-base leading-7 text-gray-600">
+                    {service.description}
+                  </p>
                 </div>
-                <h3 className="mt-6 text-xl font-bold text-gray-900">
-                  {service.title}
-                </h3>
-                <p className="mt-4 text-base leading-7 text-gray-600">
-                  {service.description}
-                </p>
-                <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#990000] transition-all duration-300 group-hover:w-full" />
+
+                {/* Bottom accent line */}
+                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-[#990000] to-[#cc2200] transition-all duration-500 group-hover:w-full" />
               </article>
             );
           })}

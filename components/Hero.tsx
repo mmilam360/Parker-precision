@@ -14,62 +14,77 @@ export function Hero() {
         loop
         playsInline
         className="absolute inset-0 h-full w-full object-cover object-[center_40%] md:object-center"
-        style={{ filter: "brightness(0.85)" }}
+        style={{ filter: "brightness(0.7) saturate(0.9)" }}
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/30" />
+      {/* Gradient overlays for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#333333]/50 via-transparent to-transparent" />
 
       {/* Content */}
-      <div className="relative mx-auto flex h-full w-full max-w-7xl flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto flex h-full w-full max-w-7xl flex-col items-start justify-center px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-3xl">
           {/* Badge */}
-          <div className="inline-flex items-center rounded-full border border-[#990000]/40 bg-[#990000]/10 px-4 py-1.5 backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#990000]" />
-            <span className="ml-2 text-sm font-semibold text-white/90">
-              Established 1946 · Pittsburgh, Pennsylvania
+          <div className="inline-flex items-center rounded-full border border-[#990000]/50 bg-[#990000]/15 px-5 py-2 backdrop-blur-sm">
+            <span className="h-2 w-2 rounded-full bg-[#990000] shadow-[0_0_8px_rgba(153,0,0,0.6)]" />
+            <span className="ml-3 text-sm font-semibold tracking-wide text-white/90">
+              Established 1946 &middot; Pittsburgh, Pennsylvania
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="mt-4 text-3xl font-black tracking-tight text-white sm:text-5xl lg:text-7xl">
+          <h1 className="mt-6 text-4xl font-black uppercase tracking-tight text-white sm:text-6xl lg:text-8xl lg:leading-[0.95]">
             Pittsburgh&apos;s Pioneer
             <br />
-            <span className="text-[#990000]">Injection Moulders</span>
+            <span className="bg-gradient-to-r from-[#990000] to-[#cc2200] bg-clip-text text-transparent">
+              Injection Moulders
+            </span>
           </h1>
 
           {/* Subheadline */}
-          <p className="mt-3 max-w-2xl text-base leading-7 text-white/70 sm:text-xl sm:leading-8">
+          <p className="mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-xl sm:leading-8">
             Precision plastics manufacturing since 1946. Serving top OEM companies
             with engineering, tool &amp; die, and full-service injection molding —
             all under one roof.
           </p>
 
           {/* CTAs */}
-          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:mt-8">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:mt-10">
             <Link
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#990000] px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-[#990000]/30 transition hover:bg-[#7a0000]"
+              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#990000] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#990000]/30 transition-all duration-300 hover:bg-[#7a0000] hover:shadow-xl hover:shadow-[#990000]/40 hover:scale-[1.02]"
             >
               Request a Quote
-              <ArrowRightIcon className="h-4 w-4" />
+              <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link
               href="#services"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 px-7 py-3.5 text-base font-semibold text-white transition hover:border-white/50 hover:bg-white/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/5 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/10"
             >
               View Capabilities
             </Link>
           </div>
+        </div>
+      </div>
 
-          {/* Trust indicators */}
-          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-white/60 sm:text-sm">
-            <span>✦ 80+ Years Experience</span>
-            <span>✦ In-House Tool &amp; Die</span>
-            <span>✦ Fortune 500 OEM Clients</span>
-          </div>
+      {/* Trust bar pinned to bottom */}
+      <div className="relative border-t border-white/10 bg-black/40 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 py-4 sm:justify-start sm:px-6 lg:px-8">
+          {[
+            { icon: "◆", text: "80+ Years Experience" },
+            { icon: "◆", text: "In-House Tool & Die" },
+            { icon: "◆", text: "Fortune 500 OEM Clients" },
+          ].map((item) => (
+            <span
+              key={item.text}
+              className="flex items-center gap-2 text-sm font-medium text-white/70"
+            >
+              <span className="text-[8px] text-[#990000]">{item.icon}</span>
+              {item.text}
+            </span>
+          ))}
         </div>
       </div>
     </section>
