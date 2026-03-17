@@ -30,24 +30,22 @@ export function Hero() {
           <div className="animate-fade-in-up inline-flex items-center rounded-full border border-[#990000]/50 bg-[#990000]/15 px-5 py-2 backdrop-blur-sm">
             <span className="h-2 w-2 rounded-full bg-[#990000] shadow-[0_0_8px_rgba(153,0,0,0.6)]" />
             <span className="ml-3 text-sm font-semibold tracking-wide text-white/90">
-              Established 1946 &middot; Pittsburgh, Pennsylvania
+              Established 1946 &middot; Pittsburgh Region, Pennsylvania
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="animate-fade-in-up animation-delay-100 mt-6 text-4xl font-black uppercase tracking-tight text-white sm:text-6xl lg:text-8xl lg:leading-[0.95]">
-            Pittsburgh&apos;s Pioneer
+          <h1 className="animate-fade-in-up animation-delay-100 mt-6 text-4xl font-black uppercase tracking-tight text-white sm:text-6xl lg:text-7xl lg:leading-[0.95]">
+            Injection Molding &amp; CNC Machining
             <br />
             <span className="bg-gradient-to-r from-[#990000] to-[#cc2200] bg-clip-text text-transparent">
-              Injection Moulders
+              Pittsburgh Region
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="animate-fade-in-up animation-delay-200 mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-xl sm:leading-8">
-            Precision plastics manufacturing since 1946. Serving top OEM companies
-            with engineering, tool &amp; die, and full-service injection molding —
-            all under one roof.
+            40–150 ton capacity. In-house tooling. Serving firearms, defense, automotive, and virtually every industry — family-owned since 1946.
           </p>
 
           {/* CTAs */}
@@ -58,6 +56,12 @@ export function Hero() {
             >
               Request a Quote
               <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#990000]/50 bg-[#990000]/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-[#990000]/80 hover:bg-[#990000]/20"
+            >
+              Request Capacity
             </Link>
             <Link
               href="#services"
@@ -74,8 +78,9 @@ export function Hero() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 py-4 sm:justify-start sm:px-6 lg:px-8">
           {[
             { icon: "◆", text: "80+ Years Experience" },
+            { icon: "◆", text: "40–150 Ton Press Capacity" },
             { icon: "◆", text: "In-House Tool & Die" },
-            { icon: "◆", text: "Fortune 500 OEM Clients" },
+            { icon: "◆", text: "24/7 Production" },
           ].map((item) => (
             <span
               key={item.text}

@@ -4,29 +4,53 @@ import {
   WrenchScrewdriverIcon,
   CogIcon,
   AdjustmentsHorizontalIcon,
+  CpuChipIcon,
+  BeakerIcon,
+  CubeIcon,
 } from "@heroicons/react/24/outline";
 
 const services = [
   {
-    title: "Engineering",
+    title: "Plastic Injection Molding",
     description:
-      "From reverse engineering to mold design and modification — our engineering team supports your project at every stage. We work with top OEM companies to deliver precision and reliability.",
-    icon: WrenchScrewdriverIcon,
+      "40–150 ton press range for short and long production runs. Tight tolerances, consistent quality, and the capacity to scale with your program. Serving OEMs and manufacturers across every major industry.",
+    icon: CubeIcon,
     num: "01",
+  },
+  {
+    title: "CNC Machining",
+    description:
+      "Precision CNC machining from prototyping through full production runs. In-house lathes, mills, and grinders deliver the accuracy your parts demand — without sending work outside.",
+    icon: CpuChipIcon,
+    num: "02",
   },
   {
     title: "Tool & Die",
     description:
-      "Full-service in-house tool and die shop with certified journeymen. CNC machines, lathes, mills, and grinders on-site — minimizing downtime and keeping your production on schedule.",
+      "Full-service in-house tool and die shop staffed by certified journeymen. Mold design, fabrication, and repair on-site — minimizing downtime and keeping your production on schedule.",
     icon: CogIcon,
-    num: "02",
+    num: "03",
+  },
+  {
+    title: "Engineering & Design",
+    description:
+      "Reverse engineering, mold design, and OEM partnerships. Our team supports your project from concept to production, working directly with your engineers to solve problems before they cost time.",
+    icon: WrenchScrewdriverIcon,
+    num: "04",
+  },
+  {
+    title: "Prototyping",
+    description:
+      "Fast-turn prototyping for new product development. Get parts in hand quickly to validate your design before committing to full tooling — reducing risk and accelerating your timeline.",
+    icon: BeakerIcon,
+    num: "05",
   },
   {
     title: "Secondary Operations",
     description:
-      "Complete secondary operations on finished products to ensure the best quality. We handle the details so your parts arrive ready to use.",
+      "Complete secondary operations including finishing, assembly, and quality inspection. We handle the details so your parts arrive ready to install or ship — no additional vendors needed.",
     icon: AdjustmentsHorizontalIcon,
-    num: "03",
+    num: "06",
   },
 ];
 
@@ -42,12 +66,11 @@ export function Services() {
             What We Do
           </h2>
           <p className="mt-4 text-lg leading-8 text-gray-600">
-            Parker Plastics supports B2B manufacturing programs with integrated
-            engineering, tooling, and production expertise — all under one roof.
+            Parker Plastics is a one-stop shop — injection molding, CNC machining, and in-house tooling all under one roof in the Pittsburgh region.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => {
             const Icon = service.icon;
             return (

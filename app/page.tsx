@@ -2,6 +2,7 @@ import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { Industries } from "@/components/Industries";
 import { Leadership } from "@/components/Leadership";
 import { Materials } from "@/components/Materials";
 import { Services } from "@/components/Services";
@@ -14,6 +15,7 @@ export default function Home() {
       <main>
         <Hero />
         <Services />
+        <Industries />
         <Materials />
         <WhyUs />
         <Leadership />

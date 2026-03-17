@@ -1,27 +1,48 @@
 import {
   BuildingOffice2Icon,
   WrenchScrewdriverIcon,
-  StarIcon,
+  ClockIcon,
+  MapPinIcon,
+  CubeTransparentIcon,
+  UsersIcon,
 } from "@heroicons/react/24/outline";
 
 const stats = [
   {
-    value: "80+",
-    label: "Years in Business",
-    sub: "Pittsburgh's original injection moulder, serving industry since 1946.",
-    icon: BuildingOffice2Icon,
+    value: "40–150T",
+    label: "Press Capacity",
+    sub: "Multiple presses covering 40 to 150 US tons — right-sized for your run, from small precision parts to larger structural components.",
+    icon: CubeTransparentIcon,
+  },
+  {
+    value: "24/7",
+    label: "Production Capability",
+    sub: "Machines running around the clock. When your program needs capacity, we deliver — days, nights, and weekends.",
+    icon: ClockIcon,
   },
   {
     value: "1 Roof",
     label: "Full In-House Capability",
-    sub: "Engineering, tool & die, and production under one roof. Fewer handoffs, faster turnaround.",
+    sub: "Injection molding, CNC machining, and tool & die under one roof. Fewer handoffs, tighter control, faster turnaround.",
     icon: WrenchScrewdriverIcon,
   },
   {
-    value: "Fortune 500",
-    label: "OEM Clients",
-    sub: "Trusted by top OEM manufacturers to deliver precision, reliability, and cost-effective solutions.",
-    icon: StarIcon,
+    value: "80+",
+    label: "Years in Business",
+    sub: "Pittsburgh's original injection moulder since 1946. Decades of process knowledge built into every program we run.",
+    icon: BuildingOffice2Icon,
+  },
+  {
+    value: "Local",
+    label: "Pittsburgh Region",
+    sub: "Belle Vernon, PA — in the heart of southwestern Pennsylvania. Fast turnaround, local relationships, responsive service.",
+    icon: MapPinIcon,
+  },
+  {
+    value: "Every",
+    label: "Industry Served",
+    sub: "Firearms, defense, automotive, utilities, medical, and industrial. If it's made from plastic, we've likely run it.",
+    icon: UsersIcon,
   },
 ];
 
@@ -40,17 +61,16 @@ export function WhyUs() {
             Built Different. Built to Last.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/50">
-            Decades of expertise, proven processes, and a team that treats your
-            program like it&apos;s their own.
+            Real capacity, real craftsmen, real Pittsburgh. Here&apos;s what makes us different.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {stats.map((item) => {
             const Icon = item.icon;
             return (
               <div
-                key={item.value}
+                key={item.label}
                 className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-10 text-center backdrop-blur-sm transition-all duration-300 hover:border-[#990000]/40 hover:bg-white/[0.08] hover:-translate-y-1"
               >
                 {/* Glow effect on hover */}
@@ -60,7 +80,7 @@ export function WhyUs() {
                   <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-[#990000]/15 ring-1 ring-[#990000]/20 transition-all duration-300 group-hover:bg-[#990000]/25 group-hover:ring-[#990000]/40">
                     <Icon className="h-7 w-7 text-[#990000]" />
                   </div>
-                  <p className="mt-6 text-5xl font-black tracking-tight text-[#990000]">
+                  <p className="mt-6 text-4xl font-black tracking-tight text-[#990000]">
                     {item.value}
                   </p>
                   <p className="mt-2 text-lg font-bold text-white">{item.label}</p>
