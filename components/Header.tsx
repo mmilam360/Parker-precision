@@ -20,21 +20,13 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#333333] shadow-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link href="#top" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
+        <Link href="#top" className="flex items-center" onClick={() => setIsOpen(false)}>
           <Image
-            src="/images/mr-plastics-logo.jpg"
-            alt="Mr. Plastics — Parker Plastics Corporation"
-            width={48}
-            height={48}
-            className="h-12 w-12 rounded"
-            priority
-          />
-          <Image
-            src="/images/logo-text.jpg"
-            alt="Parker Plastics Corporation"
-            width={240}
-            height={18}
-            className="hidden h-auto w-auto max-w-[200px] brightness-0 invert sm:block"
+            src="/images/parker-logo.png"
+            alt="Parker Precision Molding, Inc."
+            width={220}
+            height={60}
+            className="h-12 w-auto"
             priority
           />
         </Link>
