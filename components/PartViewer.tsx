@@ -39,16 +39,16 @@ export default function PartViewer({ scrollProgress, visible, isMobile = false }
     const scene = new THREE.Scene();
 
     // Camera
-    const cameraZ = isMobile ? 8 : 6;
+    const cameraZ = isMobile ? 6 : 4.5;
     const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-    camera.position.set(0, 2.5, cameraZ);
+    camera.position.set(0, 1.8, cameraZ);
     camera.lookAt(0, 0, 0);
 
     // Lighting — dramatic product render quality
-    const ambient = new THREE.AmbientLight(0xffffff, 0.15);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.4);
     scene.add(ambient);
 
-    const keyLight = new THREE.DirectionalLight(0xffffff, 4.0);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 5.0);
     keyLight.position.set(3, 5, 4);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.set(1024, 1024);
@@ -66,9 +66,13 @@ export default function PartViewer({ scrollProgress, visible, isMobile = false }
     hotSpot.position.set(0, 2, 3);
     scene.add(hotSpot);
 
+    const topLight = new THREE.PointLight(0xffffff, 3.0);
+    topLight.position.set(0, 3, 2);
+    scene.add(topLight);
+
     // ---- MATERIALS ----
     const mainMat = new THREE.MeshStandardMaterial({
-      color: 0x2a2a2a,
+      color: 0x4a4a4a,
       metalness: 0.85,
       roughness: 0.12,
       envMapIntensity: 1.2,
@@ -151,12 +155,13 @@ export default function PartViewer({ scrollProgress, visible, isMobile = false }
 
     // Animate — constantly spinning, smooth and hypnotic
     let animId = 0;
+    const mobile = window.innerWidth < 768;
     const animate = () => {
       animId = requestAnimationFrame(animate);
       const t = Date.now() * 0.001;
-      part.rotation.y += 0.008;
-      part.rotation.x = Math.sin(t * 0.3) * 0.18;
-      part.rotation.z = Math.sin(t * 0.2) * 0.08;
+      part.rotation.y += mobile ? 0.005 : 0.006;
+      part.rotation.x += mobile ? 0.002 : 0.003;
+      part.rotation.z = Math.sin(t * 0.15) * 0.1;
       renderer.render(scene, camera);
     };
     animate();

@@ -48,6 +48,21 @@ export function Hero() {
             Family-owned since 1994. Rostraver Township, PA. 40–150 ton capacity, in-house tooling, 30 years of customer-first manufacturing.
           </p>
 
+          {/* Key benefits — above fold */}
+          <div className="animate-fade-in-up animation-delay-250 mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {[
+              { label: "30+ Years", sub: "Family Owned" },
+              { label: "40–150 Ton", sub: "Press Capacity" },
+              { label: "In-House", sub: "Tool & Die" },
+              { label: "24/7", sub: "Production" },
+            ].map(({ label, sub }) => (
+              <div key={label} className="rounded-lg border border-white/10 bg-white/5 px-3 py-3 backdrop-blur-sm">
+                <div className="text-base font-black text-white sm:text-lg">{label}</div>
+                <div className="text-xs text-white/50">{sub}</div>
+              </div>
+            ))}
+          </div>
+
           {/* CTAs */}
           <div className="animate-fade-in-up animation-delay-300 mt-6 sm:mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
@@ -57,12 +72,7 @@ export function Hero() {
               Get a Quote
               <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
-            <Link
-              href="#services"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/5 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/10 sm:w-auto"
-            >
-              Request Capacity
-            </Link>
+
           </div>
         </div>
       </div>
