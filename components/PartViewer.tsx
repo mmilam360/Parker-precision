@@ -72,16 +72,16 @@ export default function PartViewer({ scrollProgress, visible, isMobile = false }
 
     // ---- MATERIALS ----
     const mainMat = new THREE.MeshStandardMaterial({
-      color: 0x4a4a4a,
-      metalness: 0.85,
-      roughness: 0.12,
+      color: 0xd8d8d8,
+      metalness: 0.6,
+      roughness: 0.18,
       envMapIntensity: 1.2,
     });
 
     const cutoutMat = new THREE.MeshStandardMaterial({
-      color: 0x111111,
+      color: 0x888888,
       metalness: 0.3,
-      roughness: 0.8,
+      roughness: 0.6,
     });
 
     // ---- BUILD SLOTTED VALVE DISC / ROTARY PLATE ----

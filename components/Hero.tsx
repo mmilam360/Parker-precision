@@ -76,23 +76,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Trust bar pinned to bottom */}
-      <div className="animate-fade-in animation-delay-500 relative border-t border-white/10 bg-black/40 backdrop-blur-md">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 items-center gap-2 px-4 py-4 sm:flex sm:flex-wrap sm:justify-start sm:gap-y-2 sm:px-6 lg:px-8">
-          {[
-            "30+ Years Experience",
-            "40–150 Ton Press Capacity",
-            "In-House Tool & Die",
-            "24/7 Production",
-          ].map((text, i) => (
-            <span key={text} className="flex items-center gap-2 text-xs font-medium text-white/70 sm:text-sm">
-              {i > 0 && <span className="hidden h-3 w-px bg-white/20 mx-3 sm:block" />}
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#990000]" />
-              {text}
-            </span>
-          ))}
-        </div>
-      </div>
+      {/* Trust bar removed — badges now above fold in hero content */}
     </section>
   );
 }
