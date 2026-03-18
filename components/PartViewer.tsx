@@ -70,11 +70,11 @@ export default function PartViewer({ scrollProgress, visible, isMobile = false }
     rimLight.position.set(0, 3, -6);
     scene.add(rimLight);
 
-    // Materials
+    // ---- MATERIALS ----
     const mat = new THREE.MeshStandardMaterial({
-      color: 0xb0b0b0,
-      metalness: 0.75,
-      roughness: 0.22,
+      color: 0xC0C0C0,
+      metalness: 0.8,
+      roughness: 0.15,
     });
 
     const darkMat = new THREE.MeshStandardMaterial({
@@ -83,91 +83,65 @@ export default function PartViewer({ scrollProgress, visible, isMobile = false }
       roughness: 0.3,
     });
 
-    const stepMat = new THREE.MeshStandardMaterial({
-      color: 0x989898,
-      metalness: 0.75,
-      roughness: 0.28,
-    });
-
-    // ---- BUILD CNC MACHINED BRACKET/HOUSING ----
+    // ---- BUILD CENTRIFUGAL IMPELLER / TURBINE WHEEL ----
     const part = new THREE.Group();
 
-    // Main body: rectangular block (2.5 × 1.2 × 3.5)
-    const bodyGeo = new THREE.BoxGeometry(2.5, 1.2, 3.5);
-    const body = new THREE.Mesh(bodyGeo, mat);
-    body.castShadow = true;
-    part.add(body);
+    // Back plate (flat disc)
+    const backPlateGeo = new THREE.CylinderGeometry(1.6, 1.6, 0.08, 64);
+    const backPlate = new THREE.Mesh(backPlateGeo, mat);
+    backPlate.castShadow = true;
+    part.add(backPlate);
 
-    // Stepped section on top (inset, smaller box)
-    const stepGeo = new THREE.BoxGeometry(1.8, 0.5, 2.6);
-    const step = new THREE.Mesh(stepGeo, stepMat);
-    step.position.set(0, 0.85, 0);
-    step.castShadow = true;
-    part.add(step);
+    // Central hub
+    const hubGeo = new THREE.CylinderGeometry(0.4, 0.4, 0.3, 32);
+    const hub = new THREE.Mesh(hubGeo, mat);
+    hub.position.set(0, 0.19, 0);
+    hub.castShadow = true;
+    part.add(hub);
 
-    // Central bore through middle (Z axis) — dark cylinder
-    const boreGeo = new THREE.CylinderGeometry(0.28, 0.28, 3.6, 32);
+    // 7 swept blades radiating from hub
+    const bladeCount = 7;
+    for (let i = 0; i < bladeCount; i++) {
+      const angle = (i / bladeCount) * Math.PI * 2;
+      const bladeGeo = new THREE.BoxGeometry(0.15, 0.5, 0.08);
+      const blade = new THREE.Mesh(bladeGeo, mat);
+      blade.castShadow = true;
+      // Position at mid-radius between hub and outer ring
+      const r = 0.95;
+      blade.position.set(
+        Math.cos(angle) * r,
+        0.14,
+        Math.sin(angle) * r
+      );
+      // Rotate around Y to align with radial direction, then sweep
+      blade.rotation.y = -angle + Math.PI / 2;
+      // Slight forward sweep (angled blade look)
+      blade.rotation.x = 0.26; // ~15 degrees
+      part.add(blade);
+    }
+
+    // Outer shroud ring
+    const torusGeo = new THREE.TorusGeometry(1.55, 0.06, 8, 64);
+    const torus = new THREE.Mesh(torusGeo, mat);
+    torus.rotation.x = Math.PI / 2;
+    torus.position.y = 0.1;
+    torus.castShadow = true;
+    part.add(torus);
+
+    // Center bore (mounting hole through hub)
+    const boreGeo = new THREE.CylinderGeometry(0.15, 0.15, 0.5, 16);
     const bore = new THREE.Mesh(boreGeo, darkMat);
-    bore.rotation.x = Math.PI / 2;
+    bore.position.set(0, 0.15, 0);
     part.add(bore);
 
-    // 4 mounting holes on corners (through body, Z direction)
-    const cornerOffsets = [
-      [-0.9, -1.35],
-      [0.9, -1.35],
-      [-0.9, 1.35],
-      [0.9, 1.35],
-    ];
-    for (const [x, z] of cornerOffsets) {
-      const holeGeo = new THREE.CylinderGeometry(0.12, 0.12, 1.3, 20);
-      const hole = new THREE.Mesh(holeGeo, darkMat);
-      hole.rotation.x = Math.PI / 2;
-      hole.position.set(x, 0, z);
-      part.add(hole);
-      // Counterbore ring (wider shallow cylinder on top face)
-      const cbGeo = new THREE.CylinderGeometry(0.22, 0.22, 0.15, 20);
-      const cb = new THREE.Mesh(cbGeo, darkMat);
-      cb.position.set(x, 0.6, z);
-      part.add(cb);
-    }
-
-    // 2 side ribs (structural detail on long sides)
-    for (const side of [-1.28, 1.28]) {
-      const ribGeo = new THREE.BoxGeometry(0.14, 1.0, 2.8);
-      const rib = new THREE.Mesh(ribGeo, mat);
-      rib.position.set(side, -0.1, 0);
-      rib.castShadow = true;
-      part.add(rib);
-    }
-
-    // Boss features (raised circular pads) on front face
-    for (const bossPos of [[-0.7, 0.2], [0.7, 0.2], [0, -0.35]]) {
-      const bossGeo = new THREE.CylinderGeometry(0.28, 0.28, 0.12, 24);
-      const boss = new THREE.Mesh(bossGeo, stepMat);
-      boss.rotation.x = Math.PI / 2;
-      boss.position.set(bossPos[0], bossPos[1], 1.76);
-      part.add(boss);
-      // Boss hole
-      const bHoleGeo = new THREE.CylinderGeometry(0.1, 0.1, 0.16, 16);
-      const bHole = new THREE.Mesh(bHoleGeo, darkMat);
-      bHole.rotation.x = Math.PI / 2;
-      bHole.position.set(bossPos[0], bossPos[1], 1.77);
-      part.add(bHole);
-    }
-
-    // Chamfer simulation: thin inset face outlines (EdgesGeometry)
-    const edgesGeo = new THREE.EdgesGeometry(bodyGeo);
+    // Edge highlight lines on back plate
     const edgesMat = new THREE.LineBasicMaterial({ color: 0xdddddd, linewidth: 1 });
+    const edgesGeo = new THREE.EdgesGeometry(backPlateGeo);
     const edges = new THREE.LineSegments(edgesGeo, edgesMat);
     part.add(edges);
 
-    const stepEdgesGeo = new THREE.EdgesGeometry(stepGeo);
-    const stepEdges = new THREE.LineSegments(stepEdgesGeo, edgesMat);
-    stepEdges.position.copy(step.position);
-    part.add(stepEdges);
-
     // Slight initial tilt for a nice 3/4 view
-    part.rotation.x = 0.25;
+    part.rotation.x = 0.3;
     scene.add(part);
 
     // Animate — multi-axis rotation
@@ -177,8 +151,8 @@ export default function PartViewer({ scrollProgress, visible, isMobile = false }
       const now = Date.now();
       const sp = scrollRef.current;
       part.rotation.y = sp * Math.PI * 4;
-      part.rotation.x = 0.25 + Math.sin(now * 0.0003) * 0.3;
-      part.rotation.z = Math.sin(now * 0.0002) * 0.15;
+      part.rotation.x = 0.3 + Math.sin(now * 0.0003) * 0.25;
+      part.rotation.z = Math.sin(now * 0.0002) * 0.12;
       renderer.render(scene, camera);
     };
     animate();
