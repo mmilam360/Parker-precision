@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import { Industries } from "@/components/Industries";
 import { Leadership } from "@/components/Leadership";
 import { Materials } from "@/components/Materials";
+import { OurCraft } from "@/components/OurCraft";
 import { Services } from "@/components/Services";
 import { WhyUs } from "@/components/WhyUs";
 
@@ -14,6 +15,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <OurCraft />
         <Services />
         <Industries />
         <Materials />

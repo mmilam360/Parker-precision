@@ -22,7 +22,7 @@ export function Header() {
         {/* Logo */}
         <Link href="#top" className="flex items-center" onClick={() => setIsOpen(false)}>
           <Image
-            src="/images/parker-logo.svg"
+            src="/images/parker-logo.png"
             alt="Parker Precision Molding, Inc."
             width={220}
             height={60}
