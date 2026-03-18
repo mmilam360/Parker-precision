@@ -18,14 +18,6 @@ export default function PartViewer({ scrollProgress, visible, isMobile = false }
     part: THREE.Group;
     animId: number;
   } | null>(null);
-  const scrollRef = useRef(scrollProgress);
-
-  useEffect(() => {
-    scrollRef.current = scrollProgress;
-    if (sceneRef.current) {
-      // scroll-driven Y is handled in the animation loop
-    }
-  }, [scrollProgress]);
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -46,113 +38,125 @@ export default function PartViewer({ scrollProgress, visible, isMobile = false }
     // Scene
     const scene = new THREE.Scene();
 
-    // Camera — pulled back on mobile so part is fully visible
-    const cameraZ = isMobile ? 9 : 5;
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.set(0, 1.2, cameraZ);
+    // Camera
+    const cameraZ = isMobile ? 8 : 6;
+    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+    camera.position.set(0, 2.5, cameraZ);
     camera.lookAt(0, 0, 0);
 
-    // Lighting — dramatic industrial feel
-    const ambient = new THREE.AmbientLight(0xffffff, 0.25);
+    // Lighting — dramatic product render quality
+    const ambient = new THREE.AmbientLight(0xffffff, 0.15);
     scene.add(ambient);
 
     const keyLight = new THREE.DirectionalLight(0xffffff, 4.0);
-    keyLight.position.set(5, 8, 4);
+    keyLight.position.set(3, 5, 4);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.set(1024, 1024);
     scene.add(keyLight);
 
     const fillLight = new THREE.DirectionalLight(0x990000, 2.0);
-    fillLight.position.set(-5, -3, 2);
+    fillLight.position.set(-4, -2, 2);
     scene.add(fillLight);
 
-    const rimLight = new THREE.DirectionalLight(0xaabbff, 1.5);
-    rimLight.position.set(0, 3, -6);
+    const rimLight = new THREE.DirectionalLight(0x4488ff, 1.5);
+    rimLight.position.set(0, 3, -5);
     scene.add(rimLight);
 
+    const hotSpot = new THREE.PointLight(0xffffff, 2.0);
+    hotSpot.position.set(0, 2, 3);
+    scene.add(hotSpot);
+
     // ---- MATERIALS ----
-    const mat = new THREE.MeshStandardMaterial({
-      color: 0xC0C0C0,
-      metalness: 0.8,
-      roughness: 0.15,
+    const mainMat = new THREE.MeshStandardMaterial({
+      color: 0x2a2a2a,
+      metalness: 0.85,
+      roughness: 0.12,
+      envMapIntensity: 1.2,
     });
 
-    const darkMat = new THREE.MeshStandardMaterial({
-      color: 0x1a1a1a,
-      metalness: 0.6,
-      roughness: 0.3,
+    const cutoutMat = new THREE.MeshStandardMaterial({
+      color: 0x111111,
+      metalness: 0.3,
+      roughness: 0.8,
     });
 
-    // ---- BUILD CENTRIFUGAL IMPELLER / TURBINE WHEEL ----
+    // ---- BUILD SLOTTED VALVE DISC / ROTARY PLATE ----
     const part = new THREE.Group();
 
-    // Back plate (flat disc)
-    const backPlateGeo = new THREE.CylinderGeometry(1.6, 1.6, 0.08, 64);
-    const backPlate = new THREE.Mesh(backPlateGeo, mat);
-    backPlate.castShadow = true;
-    part.add(backPlate);
+    // 1. Main disc
+    const discGeo = new THREE.CylinderGeometry(2.0, 2.0, 0.18, 64);
+    const disc = new THREE.Mesh(discGeo, mainMat);
+    disc.castShadow = true;
+    part.add(disc);
 
-    // Central hub
-    const hubGeo = new THREE.CylinderGeometry(0.4, 0.4, 0.3, 32);
-    const hub = new THREE.Mesh(hubGeo, mat);
-    hub.position.set(0, 0.19, 0);
+    // 2. Hub collar (base of hub)
+    const collarGeo = new THREE.CylinderGeometry(0.55, 0.55, 0.12, 32);
+    const collar = new THREE.Mesh(collarGeo, mainMat);
+    collar.position.set(0, 0.15, 0);
+    collar.castShadow = true;
+    part.add(collar);
+
+    // 3. Central hub
+    const hubGeo = new THREE.CylinderGeometry(0.35, 0.35, 0.38, 32);
+    const hub = new THREE.Mesh(hubGeo, mainMat);
+    hub.position.set(0, 0.28, 0);
     hub.castShadow = true;
     part.add(hub);
 
-    // 7 swept blades radiating from hub
-    const bladeCount = 7;
-    for (let i = 0; i < bladeCount; i++) {
-      const angle = (i / bladeCount) * Math.PI * 2;
-      const bladeGeo = new THREE.BoxGeometry(0.15, 0.5, 0.08);
-      const blade = new THREE.Mesh(bladeGeo, mat);
-      blade.castShadow = true;
-      // Position at mid-radius between hub and outer ring
-      const r = 0.95;
-      blade.position.set(
-        Math.cos(angle) * r,
-        0.14,
-        Math.sin(angle) * r
-      );
-      // Rotate around Y to align with radial direction, then sweep
-      blade.rotation.y = -angle + Math.PI / 2;
-      // Slight forward sweep (angled blade look)
-      blade.rotation.x = 0.26; // ~15 degrees
-      part.add(blade);
-    }
-
-    // Outer shroud ring
-    const torusGeo = new THREE.TorusGeometry(1.55, 0.06, 8, 64);
-    const torus = new THREE.Mesh(torusGeo, mat);
-    torus.rotation.x = Math.PI / 2;
-    torus.position.y = 0.1;
-    torus.castShadow = true;
-    part.add(torus);
-
-    // Center bore (mounting hole through hub)
+    // 4. Center bore — dark material through center
     const boreGeo = new THREE.CylinderGeometry(0.15, 0.15, 0.5, 16);
-    const bore = new THREE.Mesh(boreGeo, darkMat);
-    bore.position.set(0, 0.15, 0);
+    const bore = new THREE.Mesh(boreGeo, cutoutMat);
+    bore.position.set(0, 0.25, 0);
     part.add(bore);
 
-    // Edge highlight lines on back plate
-    const edgesMat = new THREE.LineBasicMaterial({ color: 0xdddddd, linewidth: 1 });
-    const edgesGeo = new THREE.EdgesGeometry(backPlateGeo);
-    const edges = new THREE.LineSegments(edgesGeo, edgesMat);
-    part.add(edges);
+    // 5. Radial slots — 6 slots evenly spaced (60° apart)
+    const slotCount = 6;
+    for (let i = 0; i < slotCount; i++) {
+      const angle = (i / slotCount) * Math.PI * 2;
+      const slotGeo = new THREE.BoxGeometry(0.22, 0.25, 0.9);
+      const slot = new THREE.Mesh(slotGeo, cutoutMat);
+      const r = 1.2;
+      slot.position.set(Math.cos(angle) * r, 0, Math.sin(angle) * r);
+      slot.rotation.y = -angle;
+      part.add(slot);
+    }
 
-    // Slight initial tilt for a nice 3/4 view
-    part.rotation.x = 0.3;
+    // 6. Outer chamfer ring
+    const outerChamferGeo = new THREE.TorusGeometry(1.95, 0.04, 8, 64);
+    const outerChamfer = new THREE.Mesh(outerChamferGeo, mainMat);
+    outerChamfer.rotation.x = Math.PI / 2;
+    outerChamfer.position.y = 0.09;
+    outerChamfer.castShadow = true;
+    part.add(outerChamfer);
+
+    // 7. Inner chamfer ring (around hub base)
+    const innerChamferGeo = new THREE.TorusGeometry(0.56, 0.03, 8, 64);
+    const innerChamfer = new THREE.Mesh(innerChamferGeo, mainMat);
+    innerChamfer.rotation.x = Math.PI / 2;
+    innerChamfer.position.y = 0.09;
+    part.add(innerChamfer);
+
+    // 8. Mounting bolt holes — 6 small dark cylinders at r=1.6, alternating between slots
+    const boltCount = 6;
+    for (let i = 0; i < boltCount; i++) {
+      const angle = ((i + 0.5) / boltCount) * Math.PI * 2; // offset by half step
+      const boltGeo = new THREE.CylinderGeometry(0.07, 0.07, 0.25, 12);
+      const bolt = new THREE.Mesh(boltGeo, cutoutMat);
+      const r = 1.6;
+      bolt.position.set(Math.cos(angle) * r, 0, Math.sin(angle) * r);
+      part.add(bolt);
+    }
+
     scene.add(part);
 
-    // Animate — multi-axis rotation
+    // Animate — constantly spinning, smooth and hypnotic
     let animId = 0;
     const animate = () => {
       animId = requestAnimationFrame(animate);
-      const now = Date.now();
-      const sp = scrollRef.current;
-      part.rotation.y = sp * Math.PI * 4;
-      part.rotation.x = 0.3 + Math.sin(now * 0.0003) * 0.25;
-      part.rotation.z = Math.sin(now * 0.0002) * 0.12;
+      const t = Date.now() * 0.001;
+      part.rotation.y += 0.008;
+      part.rotation.x = Math.sin(t * 0.3) * 0.18;
+      part.rotation.z = Math.sin(t * 0.2) * 0.08;
       renderer.render(scene, camera);
     };
     animate();
