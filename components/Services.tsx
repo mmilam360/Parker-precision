@@ -90,7 +90,7 @@ export function Services() {
                   <h3 className="mt-5 text-lg font-bold text-white">
                     {service.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-6 text-gray-400">
+                  <p className="mt-3 text-[0.9375rem] leading-6 text-gray-400">
                     {service.description}
                   </p>
                 </div>
