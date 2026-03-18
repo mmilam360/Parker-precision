@@ -58,9 +58,9 @@ export function OurCraft() {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#990000]">
               Our Craft
             </p>
-            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+            <h2 className="mt-3 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
               PRECISION MANUFACTURING
-              <span className="block text-2xl sm:text-3xl lg:text-4xl mt-2 text-gray-300">
+              <span className="block text-xl sm:text-3xl lg:text-4xl mt-2 text-gray-300">
                 30 Years of Machined Excellence
               </span>
             </h2>

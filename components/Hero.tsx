@@ -35,9 +35,8 @@ export function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="animate-fade-in-up animation-delay-100 mt-6 text-[2rem] font-black uppercase tracking-tight text-white sm:text-6xl lg:text-7xl lg:leading-[0.95]">
-            Precision Injection Molding &amp; CNC Machining
-            <br />
+          <h1 className="animate-fade-in-up animation-delay-100 mt-6 text-[1.75rem] font-black uppercase tracking-tight text-white sm:text-6xl lg:text-7xl lg:leading-[0.95] leading-tight">
+            Precision Injection Molding &amp; CNC Machining{" "}
             <span className="bg-gradient-to-r from-[#990000] to-[#cc2200] bg-clip-text text-transparent">
               Southwest PA
             </span>
