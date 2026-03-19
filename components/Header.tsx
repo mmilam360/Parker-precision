@@ -27,7 +27,7 @@ export function Header() {
             width={220}
             height={60}
             className="h-14 w-auto"
-            style={{ background: "transparent" }}
+            style={{ background: "transparent", filter: "brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(300deg)" }}
             priority
           />
         </Link>
