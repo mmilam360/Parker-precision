@@ -27,6 +27,7 @@ export function Header() {
             width={220}
             height={60}
             className="h-14 w-auto"
+            style={{ background: "transparent" }}
             priority
           />
         </Link>

@@ -39,9 +39,9 @@ export default function PartViewer({ scrollProgress, visible, isMobile = false }
     const scene = new THREE.Scene();
 
     // Camera
-    const cameraZ = isMobile ? 6 : 4.5;
+    const cameraZ = isMobile ? 6 : 7.5;
     const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-    camera.position.set(0, 1.8, cameraZ);
+    camera.position.set(0, isMobile ? 1.8 : 1.2, cameraZ);
     camera.lookAt(0, 0, 0);
 
     // Lighting — dramatic product render quality

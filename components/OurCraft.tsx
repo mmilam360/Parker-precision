@@ -46,8 +46,8 @@ export function OurCraft() {
       ref={sectionRef}
       className="bg-[#0a0a0a] min-h-[600px] lg:min-h-[700px] flex items-center"
     >
-      <div className="w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+      <div className="w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-center">
           {/* Mobile: part on top */}
           <div className="block lg:hidden relative w-full" style={{ height: 280 }}>
             <PartViewer scrollProgress={scrollProgress} visible={visible} isMobile={true} />
@@ -75,7 +75,7 @@ export function OurCraft() {
           </div>
 
           {/* Right: 3D part — desktop only */}
-          <div className="hidden lg:block relative w-full h-full min-h-[600px]">
+          <div className="hidden lg:flex lg:items-center lg:justify-center relative w-full" style={{ height: 420 }}>
             <PartViewer scrollProgress={scrollProgress} visible={visible} isMobile={false} />
           </div>
         </div>
