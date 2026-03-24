@@ -24,7 +24,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-[#333333]/50 via-transparent to-transparent" />
 
       {/* Content */}
-      <div className="relative mx-auto flex h-full w-full max-w-7xl flex-col items-start justify-center px-4 sm:px-6 lg:px-8 -mt-16 md:-mt-20">
+      <div className="relative mx-auto flex h-full w-full max-w-7xl flex-col items-start justify-center px-4 sm:px-6 lg:px-8 pt-16 pb-8 md:pt-0 md:pb-0">
         <div className="w-full max-w-3xl">
           {/* Badge */}
           <div className="animate-fade-in-up inline-flex max-w-full items-center rounded-full border border-[#990000]/50 bg-[#990000]/15 px-4 py-2 backdrop-blur-sm">
