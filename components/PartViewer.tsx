@@ -25,7 +25,7 @@ export default function PartViewer({ visible, isMobile = false }: PartViewerProp
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.5;
+    renderer.toneMappingExposure = 2.2;
     el.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
@@ -34,27 +34,31 @@ export default function PartViewer({ visible, isMobile = false }: PartViewerProp
     camera.position.set(2.5, 2.0, cameraZ);
     camera.lookAt(0, 0, 0);
 
-    // Lighting
-    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-    const key = new THREE.DirectionalLight(0xffffff, 5.0);
+    // Lighting — strong ambient to fill all faces, key + rim for depth
+    scene.add(new THREE.AmbientLight(0xffffff, 2.0));
+    const key = new THREE.DirectionalLight(0xffffff, 6.0);
     key.position.set(4, 6, 5);
     key.castShadow = true;
     scene.add(key);
-    const fill = new THREE.DirectionalLight(0x8899bb, 1.5);
+    const fill = new THREE.DirectionalLight(0xaabbcc, 3.0);
     fill.position.set(-5, -2, 3);
     scene.add(fill);
-    const rim = new THREE.DirectionalLight(0xffffff, 2.0);
+    const rim = new THREE.DirectionalLight(0xffffff, 3.0);
     rim.position.set(0, 4, -6);
     scene.add(rim);
-    const top = new THREE.PointLight(0xffffff, 3.5);
+    const bottom = new THREE.DirectionalLight(0xffffff, 2.0);
+    bottom.position.set(0, -5, 2);
+    scene.add(bottom);
+    const top = new THREE.PointLight(0xffffff, 4.0);
     top.position.set(0, 5, 2);
     scene.add(top);
 
-    // Steel material applied after load
+    // Steel material — DoubleSide so no hollow gaps from inverted faces
     const steelMat = new THREE.MeshStandardMaterial({
       color: 0xc8cdd4,
       metalness: 0.88,
       roughness: 0.10,
+      side: THREE.DoubleSide,
     });
 
     let part: THREE.Object3D | null = null;
