@@ -32,136 +32,235 @@ export default function PartViewer({ scrollProgress, visible, isMobile = false }
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.4;
+    renderer.toneMappingExposure = 1.5;
     el.appendChild(renderer.domElement);
 
     // Scene
     const scene = new THREE.Scene();
 
     // Camera
-    const cameraZ = isMobile ? 6 : 7.5;
-    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-    camera.position.set(0, isMobile ? 1.8 : 1.2, cameraZ);
+    const cameraZ = isMobile ? 7 : 9;
+    const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
+    camera.position.set(2.5, 2.0, cameraZ);
     camera.lookAt(0, 0, 0);
 
-    // Lighting — dramatic product render quality
-    const ambient = new THREE.AmbientLight(0xffffff, 0.4);
-    scene.add(ambient);
+    // ── Lighting ───────────────────────────────────────────
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
     const keyLight = new THREE.DirectionalLight(0xffffff, 5.0);
-    keyLight.position.set(3, 5, 4);
+    keyLight.position.set(4, 6, 5);
     keyLight.castShadow = true;
-    keyLight.shadow.mapSize.set(1024, 1024);
     scene.add(keyLight);
 
-    const fillLight = new THREE.DirectionalLight(0x990000, 2.0);
-    fillLight.position.set(-4, -2, 2);
+    const fillLight = new THREE.DirectionalLight(0x8899bb, 1.5);
+    fillLight.position.set(-5, -2, 3);
     scene.add(fillLight);
 
-    const rimLight = new THREE.DirectionalLight(0x4488ff, 1.5);
-    rimLight.position.set(0, 3, -5);
+    const rimLight = new THREE.DirectionalLight(0xffffff, 2.0);
+    rimLight.position.set(0, 4, -6);
     scene.add(rimLight);
 
-    const hotSpot = new THREE.PointLight(0xffffff, 2.0);
-    hotSpot.position.set(0, 2, 3);
-    scene.add(hotSpot);
+    const topSpot = new THREE.PointLight(0xffffff, 3.5);
+    topSpot.position.set(0, 5, 2);
+    scene.add(topSpot);
 
-    const topLight = new THREE.PointLight(0xffffff, 3.0);
-    topLight.position.set(0, 3, 2);
-    scene.add(topLight);
+    // ── Materials ──────────────────────────────────────────
+    // Steel / machined metal — slightly warm silver
+    const steelMat = new THREE.MeshStandardMaterial({
+      color: 0xc8cdd4,
+      metalness: 0.85,
+      roughness: 0.12,
+      envMapIntensity: 1.0,
+    });
 
-    // ---- MATERIALS ----
-    const mainMat = new THREE.MeshStandardMaterial({
-      color: 0xd8d8d8,
-      metalness: 0.6,
+    // Slightly darker for gear teeth / recessed faces
+    const teethMat = new THREE.MeshStandardMaterial({
+      color: 0xa8b0b8,
+      metalness: 0.90,
       roughness: 0.18,
-      envMapIntensity: 1.2,
     });
 
-    const cutoutMat = new THREE.MeshStandardMaterial({
-      color: 0x888888,
-      metalness: 0.3,
-      roughness: 0.6,
+    // Dark bore / hole material
+    const boreMat = new THREE.MeshStandardMaterial({
+      color: 0x2a2a2a,
+      metalness: 0.2,
+      roughness: 0.8,
     });
 
-    // ---- BUILD SLOTTED VALVE DISC / ROTARY PLATE ----
+    // ── Build Worm Gear ────────────────────────────────────
     const part = new THREE.Group();
 
-    // 1. Main disc
-    const discGeo = new THREE.CylinderGeometry(2.0, 2.0, 0.18, 64);
-    const disc = new THREE.Mesh(discGeo, mainMat);
-    disc.castShadow = true;
-    part.add(disc);
+    // --- WORM GEAR (large helical gear wheel) ---
+    const gearGroup = new THREE.Group();
 
-    // 2. Hub collar (base of hub)
-    const collarGeo = new THREE.CylinderGeometry(0.55, 0.55, 0.12, 32);
-    const collar = new THREE.Mesh(collarGeo, mainMat);
-    collar.position.set(0, 0.15, 0);
-    collar.castShadow = true;
-    part.add(collar);
+    // Gear body disc
+    const gearBodyGeo = new THREE.CylinderGeometry(2.0, 2.0, 0.7, 64);
+    const gearBody = new THREE.Mesh(gearBodyGeo, steelMat);
+    gearBody.castShadow = true;
+    gearGroup.add(gearBody);
 
-    // 3. Central hub
-    const hubGeo = new THREE.CylinderGeometry(0.35, 0.35, 0.38, 32);
-    const hub = new THREE.Mesh(hubGeo, mainMat);
-    hub.position.set(0, 0.28, 0);
+    // Hub (center boss)
+    const hubGeo = new THREE.CylinderGeometry(0.5, 0.55, 1.1, 32);
+    const hub = new THREE.Mesh(hubGeo, steelMat);
     hub.castShadow = true;
-    part.add(hub);
+    gearGroup.add(hub);
 
-    // 4. Center bore — dark material through center
-    const boreGeo = new THREE.CylinderGeometry(0.15, 0.15, 0.5, 16);
-    const bore = new THREE.Mesh(boreGeo, cutoutMat);
-    bore.position.set(0, 0.25, 0);
-    part.add(bore);
+    // Keyway bore (center hole)
+    const boreGeo = new THREE.CylinderGeometry(0.22, 0.22, 1.3, 16);
+    const bore = new THREE.Mesh(boreGeo, boreMat);
+    gearGroup.add(bore);
 
-    // 5. Radial slots — 6 slots evenly spaced (60° apart)
-    const slotCount = 6;
-    for (let i = 0; i < slotCount; i++) {
-      const angle = (i / slotCount) * Math.PI * 2;
-      const slotGeo = new THREE.BoxGeometry(0.22, 0.25, 0.9);
-      const slot = new THREE.Mesh(slotGeo, cutoutMat);
-      const r = 1.2;
-      slot.position.set(Math.cos(angle) * r, 0, Math.sin(angle) * r);
-      slot.rotation.y = -angle;
-      part.add(slot);
+    // Spoke web (flat disc between hub and rim, slightly recessed)
+    const webGeo = new THREE.CylinderGeometry(2.0, 2.0, 0.28, 64);
+    const web = new THREE.Mesh(webGeo, steelMat);
+    gearGroup.add(web);
+
+    // Lightening holes (4 holes in the web)
+    const numHoles = 4;
+    for (let i = 0; i < numHoles; i++) {
+      const angle = (i / numHoles) * Math.PI * 2 + Math.PI / numHoles;
+      const holeGeo = new THREE.CylinderGeometry(0.38, 0.38, 0.35, 24);
+      const hole = new THREE.Mesh(holeGeo, boreMat);
+      hole.position.set(Math.cos(angle) * 1.2, 0, Math.sin(angle) * 1.2);
+      gearGroup.add(hole);
     }
 
-    // 6. Outer chamfer ring
-    const outerChamferGeo = new THREE.TorusGeometry(1.95, 0.04, 8, 64);
-    const outerChamfer = new THREE.Mesh(outerChamferGeo, mainMat);
-    outerChamfer.rotation.x = Math.PI / 2;
-    outerChamfer.position.y = 0.09;
-    outerChamfer.castShadow = true;
-    part.add(outerChamfer);
+    // Gear teeth — helical tooth profile around the outer rim
+    // Using thin rectangular prisms arranged radially, rotated slightly for helix effect
+    const toothCount = 32;
+    const toothW = 0.18;
+    const toothH = 0.22;
+    const toothD = 0.65;
+    const gearR = 2.0;
 
-    // 7. Inner chamfer ring (around hub base)
-    const innerChamferGeo = new THREE.TorusGeometry(0.56, 0.03, 8, 64);
-    const innerChamfer = new THREE.Mesh(innerChamferGeo, mainMat);
-    innerChamfer.rotation.x = Math.PI / 2;
-    innerChamfer.position.y = 0.09;
-    part.add(innerChamfer);
+    for (let i = 0; i < toothCount; i++) {
+      const angle = (i / toothCount) * Math.PI * 2;
+      // Helical twist offset — each tooth rotated slightly around Y based on its position
+      const helixTwist = (i / toothCount) * 0.35;
 
-    // 8. Mounting bolt holes — 6 small dark cylinders at r=1.6, alternating between slots
-    const boltCount = 6;
-    for (let i = 0; i < boltCount; i++) {
-      const angle = ((i + 0.5) / boltCount) * Math.PI * 2; // offset by half step
-      const boltGeo = new THREE.CylinderGeometry(0.07, 0.07, 0.25, 12);
-      const bolt = new THREE.Mesh(boltGeo, cutoutMat);
-      const r = 1.6;
-      bolt.position.set(Math.cos(angle) * r, 0, Math.sin(angle) * r);
-      part.add(bolt);
+      const toothGeo = new THREE.BoxGeometry(toothW, toothD, toothH);
+      const tooth = new THREE.Mesh(toothGeo, teethMat);
+
+      // Position at rim
+      tooth.position.set(
+        Math.cos(angle) * (gearR + toothH / 2 - 0.02),
+        helixTwist - 0.18, // helix offset in Y
+        Math.sin(angle) * (gearR + toothH / 2 - 0.02)
+      );
+      // Rotate to face outward
+      tooth.rotation.y = -angle;
+      tooth.castShadow = true;
+      gearGroup.add(tooth);
     }
+
+    // Chamfer rings on gear edges (decorative machined edge)
+    const chamfer1 = new THREE.Mesh(
+      new THREE.TorusGeometry(1.98, 0.05, 8, 64),
+      steelMat
+    );
+    chamfer1.rotation.x = Math.PI / 2;
+    chamfer1.position.y = 0.35;
+    gearGroup.add(chamfer1);
+
+    const chamfer2 = new THREE.Mesh(
+      new THREE.TorusGeometry(1.98, 0.05, 8, 64),
+      steelMat
+    );
+    chamfer2.rotation.x = Math.PI / 2;
+    chamfer2.position.y = -0.35;
+    gearGroup.add(chamfer2);
+
+    // Hub chamfer rings
+    const hubChamfer1 = new THREE.Mesh(
+      new THREE.TorusGeometry(0.52, 0.03, 8, 32),
+      steelMat
+    );
+    hubChamfer1.rotation.x = Math.PI / 2;
+    hubChamfer1.position.y = 0.55;
+    gearGroup.add(hubChamfer1);
+
+    const hubChamfer2 = new THREE.Mesh(
+      new THREE.TorusGeometry(0.52, 0.03, 8, 32),
+      steelMat
+    );
+    hubChamfer2.rotation.x = Math.PI / 2;
+    hubChamfer2.position.y = -0.55;
+    gearGroup.add(hubChamfer2);
+
+    // --- WORM SHAFT (the driving worm screw) ---
+    const wormGroup = new THREE.Group();
+
+    // Shaft body
+    const shaftGeo = new THREE.CylinderGeometry(0.22, 0.22, 4.5, 24);
+    const shaft = new THREE.Mesh(shaftGeo, steelMat);
+    shaft.castShadow = true;
+    wormGroup.add(shaft);
+
+    // Worm thread (helical coil around the shaft)
+    const threadTurns = 6;
+    const threadSegs = threadTurns * 24;
+    const threadCurvePoints: THREE.Vector3[] = [];
+
+    for (let i = 0; i <= threadSegs; i++) {
+      const t = i / threadSegs;
+      const angle = t * Math.PI * 2 * threadTurns;
+      const y = (t - 0.5) * 4.0;
+      threadCurvePoints.push(
+        new THREE.Vector3(
+          Math.cos(angle) * 0.45,
+          y,
+          Math.sin(angle) * 0.45
+        )
+      );
+    }
+
+    const threadCurve = new THREE.CatmullRomCurve3(threadCurvePoints);
+    const threadGeo = new THREE.TubeGeometry(threadCurve, threadSegs, 0.085, 8, false);
+    const thread = new THREE.Mesh(threadGeo, teethMat);
+    thread.castShadow = true;
+    wormGroup.add(thread);
+
+    // Shaft collars / shoulders
+    for (const yPos of [-1.8, 1.8]) {
+      const collarGeo = new THREE.CylinderGeometry(0.32, 0.32, 0.15, 24);
+      const collar = new THREE.Mesh(collarGeo, steelMat);
+      collar.position.y = yPos;
+      wormGroup.add(collar);
+    }
+
+    // Shaft ends (turned down diameter)
+    for (const yPos of [-2.1, 2.1]) {
+      const endGeo = new THREE.CylinderGeometry(0.15, 0.15, 0.5, 16);
+      const end = new THREE.Mesh(endGeo, steelMat);
+      end.position.y = yPos;
+      wormGroup.add(end);
+    }
+
+    // Position worm shaft perpendicular to gear, meshing at the rim
+    wormGroup.rotation.z = Math.PI / 2; // lay horizontal
+    wormGroup.position.set(0, 2.35, 0);  // sit on top of gear rim
+
+    // Assemble
+    part.add(gearGroup);
+    part.add(wormGroup);
+
+    // Tilt whole assembly for dramatic presentation angle
+    part.rotation.x = 0.2;
+    part.rotation.y = 0.4;
 
     scene.add(part);
 
-    // Animate — constantly spinning, smooth and hypnotic
+    // ── Animation ──────────────────────────────────────────
     let animId = 0;
-    const mobile = window.innerWidth < 768;
     const animate = () => {
       animId = requestAnimationFrame(animate);
-      const t = Date.now() * 0.001;
-      part.rotation.y += mobile ? 0.005 : 0.006;
-      part.rotation.x += mobile ? 0.002 : 0.003;
-      part.rotation.z = Math.sin(t * 0.15) * 0.1;
+      const speed = isMobile ? 0.004 : 0.005;
+      // Gear rotates around Y axis
+      gearGroup.rotation.y += speed;
+      // Worm shaft rotates around its own (now horizontal) axis in sync
+      // 1 tooth advance per gear tooth = shaft turns toothCount times per gear revolution
+      // visual approximation: worm turns faster
+      wormGroup.rotation.x += speed * toothCount * 0.08;
       renderer.render(scene, camera);
     };
     animate();
@@ -192,7 +291,7 @@ export default function PartViewer({ scrollProgress, visible, isMobile = false }
       ref={mountRef}
       className="w-full h-full"
       style={{
-        opacity: visible ? 0.85 : 0,
+        opacity: visible ? 0.88 : 0,
         transition: "opacity 0.8s ease",
       }}
     />
