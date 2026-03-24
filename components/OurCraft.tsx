@@ -75,7 +75,7 @@ export function OurCraft() {
           </div>
 
           {/* Right: 3D part — desktop only */}
-          <div className="hidden lg:flex lg:items-center lg:justify-center relative w-full" style={{ height: 420 }}>
+          <div className="hidden lg:flex lg:items-center lg:justify-center relative w-full" style={{ height: 580 }}>
             <PartViewer scrollProgress={scrollProgress} visible={visible} isMobile={false} />
           </div>
         </div>

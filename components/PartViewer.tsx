@@ -28,8 +28,8 @@ export default function PartViewer({ visible, isMobile = false }: PartViewerProp
     el.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
-    camera.position.set(isMobile ? 1.5 : 2, 1.5, isMobile ? 6 : 8);
+    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+    camera.position.set(isMobile ? 1.5 : 1.5, 1.0, isMobile ? 6 : 5.5);
     camera.lookAt(0, 0, 0);
 
     // Lighting
@@ -58,9 +58,16 @@ export default function PartViewer({ visible, isMobile = false }: PartViewerProp
     let part: THREE.Object3D | null = null;
     let animId = 0;
 
+    // Random slow drift axes — changes direction smoothly over time
+    const baseSpeed = isMobile ? 0.003 : 0.004;
     const animate = () => {
       animId = requestAnimationFrame(animate);
-      if (part) part.rotation.y += isMobile ? 0.004 : 0.005;
+      if (part) {
+        const t = Date.now() * 0.0003;
+        part.rotation.y += baseSpeed + Math.sin(t * 0.7) * 0.002;
+        part.rotation.x += Math.sin(t * 0.4) * 0.001;
+        part.rotation.z += Math.cos(t * 0.55) * 0.0008;
+      }
       renderer.render(scene, camera);
     };
 
@@ -92,7 +99,7 @@ export default function PartViewer({ visible, isMobile = false }: PartViewerProp
             const center = box.getCenter(new THREE.Vector3());
             const size = box.getSize(new THREE.Vector3());
             const maxDim = Math.max(size.x, size.y, size.z);
-            const scale = 3.5 / maxDim;
+            const scale = (isMobile ? 3.5 : 4.8) / maxDim;
             part.scale.setScalar(scale);
             part.position.sub(center.multiplyScalar(scale));
             part.rotation.x = 0.2;
